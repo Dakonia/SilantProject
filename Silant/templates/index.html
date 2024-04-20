@@ -1,0 +1,53 @@
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+    <!-- Подключаем файл стилей -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    
+    <div class="comp">
+        <h2 class="Text-comp">Проверьте комплектацию и технические характеристики техники <br/> "Силант"</h2>
+    </div>
+    
+    <!-- Перемещаем надпись "Заводской номер" слева от поля ввода -->
+    <div class="search-container">
+        <form action="/search/" method="GET">
+            <label for="serial-number">Заводской номер:</label>
+            <input type="text" id="serial-number" name="serial-number">
+            <input type="submit" value="Поиск">
+        </form>
+    </div>
+    
+    <!-- Ваша таблица с данными -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Зав. № машины</th>
+                <th>Модель техники</th>
+                <th>Модель двигателя</th>
+                <th>Зав. № двигателя</th>
+                <th>Модель трансмиссии</th>
+                <th>Зав. № трансмиссии</th>
+                <th>Модель ведущего моста</th>
+                <th>Зав. № ведущего моста</th>
+                <th>Модель управляемого моста</th>
+                <th>Зав. № управляемого моста</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for machine in machines %}
+                <tr>
+                    <td>{{ machine.serial_number }}</td>
+                    <td>{{ machine.model.name }}</td>
+                    <td>{{ machine.engine_model.name }}</td>
+                    <td>{{ machine.engine_serial_number }}</td>
+                    <td>{{ machine.transmission_model.name }}</td>
+                    <td>{{ machine.transmission_serial_number }}</td>
+                    <td>{{ machine.drive_axle_model.name }}</td>
+                    <td>{{ machine.drive_axle_serial_number }}</td>
+                    <td>{{ machine.steer_axle_model.name }}</td>
+                    <td>{{ machine.steer_axle_serial_number }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

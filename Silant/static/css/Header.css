@@ -1,0 +1,52 @@
+@font-face {
+    font-family: Astra;
+    src: url(../font/PT-Astra-Sans_Regular.ttf);
+}
+
+/* #163E6C
+#D20A11
+#EBE6D6 */
+header {
+    font-family: Astra;
+    background-color: #163E6C; /* Цвет фона шапки */
+    height: 100px;
+    color: #fff; /* Цвет текста */
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    position: relative; /* Позиционируем header как relative для абсолютного позиционирования дочерних элементов */
+}
+
+.logo img {
+    height: 80px;
+}
+
+.contact-info p {
+    margin-top: 0px;
+    text-align: center;
+}
+
+.login-button a {
+    margin-right: 20px;
+    color: #fff; /* Цвет текста кнопки */
+    text-decoration: none; /* Убираем подчеркивание */
+    border: 1px solid #fff; /* Граница кнопки */
+    padding: 5px 10px; /* Отступы внутри кнопки */
+    border-radius: 5px; /* Скругление углов */
+}
+
+.login-button a:hover {
+    background-color: #fff; /* Изменяем цвет фона при наведении */
+    color: #333; /* Изменяем цвет текста при наведении */
+}
+
+.text-service{
+    font-size: 30px;
+    text-align: center;
+    margin-top: 60px;
+    position: absolute; /* Позиционируем абсолютно */
+    margin-bottom: 0px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+}

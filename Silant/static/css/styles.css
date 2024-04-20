@@ -1,0 +1,83 @@
+/* styles.css */
+
+/* Оставляем стили без изменений */
+@font-face {
+    font-family: Astra-bold;
+    src: url(../font/PT-Astra-Sans_Bold.ttf);
+}
+@font-face {
+    font-family: Astra-ital;
+    src: url(../font/PT-Astra-Sans_Italic.ttf);
+}
+
+/* Стили для таблицы */
+table {
+    margin-top: 30px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: center;
+    font-family: Astra-ital;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    background-color: #EBE6D6;
+}
+
+/* Стили для заголовка таблицы */
+th {
+    font-family: Astra-bold;
+    background-color: #163E6C;
+    color: white;
+    text-align: center;
+}
+
+.comp{
+    font-family: Astra-bold;
+    margin-top: 60px;
+    text-align: center;
+}
+.Text-comp{
+    font-size: 30px;
+}
+
+/* Стили для поискового блока */
+.search-container {
+    font-family: Astra-bold;
+    margin-top: 70px;
+    height: 60px;
+    background-color: #D20A11;
+    padding: 10px;
+}
+
+.search-container label {
+    margin-top: 10px;
+    color: #EBE6D6;
+    text-align: left;
+    font-size: 30px;
+    display: inline-block; /* Добавляем блочный элемент для правильного выравнивания */
+}
+
+.search-container input[type=text] {
+    font-family: Astra-bold;
+    padding: 13px;
+    margin-left: 10px;
+    margin-top: 0px;
+    border: none;
+    border-radius: 5px;
+}
+
+.search-container input[type=submit] {
+    margin-left: 30px;
+    background-color: #163E6C;
+    color: white;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container input[type=submit]:hover {
+    background-color: #B8060D;
+}

@@ -1,0 +1,35 @@
+<!-- base_profile.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Силант</title>
+    <link rel="stylesheet" href="{% static 'css/Header.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Логотип -->
+        <div class="logo">
+            <img src= "{% static 'media/Logo.jpg' %}" alt="Logo">
+        </div>
+        <!-- Контактная информация -->
+        <div class="contact-info">
+            <p>+7-8352-20-12-09  Telegram</p>
+        </div>
+        <!-- Кнопка авторизации -->
+        <div class="login-button">
+            <a>Войти</a>
+        </div>
+        <div class="text-service">
+            <p>Электронная сервисная книжка мой Силант</p>
+        </div>
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
