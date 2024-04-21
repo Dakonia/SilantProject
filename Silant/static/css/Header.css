@@ -41,6 +41,20 @@ header {
     color: #333; /* Изменяем цвет текста при наведении */
 }
 
+.logout-button a {
+    margin-right: 20px;
+    color: #fff; /* Цвет текста кнопки */
+    text-decoration: none; /* Убираем подчеркивание */
+    border: 1px solid #fff; /* Граница кнопки */
+    padding: 5px 10px; /* Отступы внутри кнопки */
+    border-radius: 5px; /* Скругление углов */
+}
+
+.logout-button a:hover {
+    background-color: #D20A11; /* Изменяем цвет фона при наведении */
+    color: #333; /* Изменяем цвет текста при наведении */
+}
+
 .text-service{
     font-size: 30px;
     text-align: center;
@@ -50,3 +64,5 @@ header {
     left: 50%; 
     transform: translateX(-50%); 
 }
+
+

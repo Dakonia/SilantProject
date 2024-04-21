@@ -1,0 +1,17 @@
+<!-- login.html -->
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+    <div class="login-container">
+        <form class="login-form" method="post">
+            {% csrf_token %}
+            <h3>Авторизация</h3>
+            {{ form.as_p }}
+            <button type="submit">Войти</button>
+            {% if form.errors %}
+                <p class="error-message">Неверное имя пользователя или пароль.</p>
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

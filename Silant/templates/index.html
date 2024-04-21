@@ -1,3 +1,5 @@
+<!-- index.html -->
+
 {% extends 'flatpages/baseheader.html' %}
 {% load static %}
 {% block content %}
@@ -7,47 +9,70 @@
     <div class="comp">
         <h2 class="Text-comp">Проверьте комплектацию и технические характеристики техники <br/> "Силант"</h2>
     </div>
-    
-    <!-- Перемещаем надпись "Заводской номер" слева от поля ввода -->
+    <div class="user-info">
+        {% if user.is_authenticated %}
+            {% if user.groups.all %}
+                {% for group in user.groups.all %}
+                    {% if group.name == "Manager" %}
+                        <p>Менеджер: {{ user.username }}</p>
+                    {% elif group.name == "Service" %}
+                        <p>Сервис: {{ user.servicedepartment.name }}</p>
+                    {% elif group.name == "Client" %}
+                        <p>Клиент: {{ user.client.name }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+    <!-- Форма поиска по номеру машины -->
     <div class="search-container">
-        <form action="/search/" method="GET">
+        <form action="" method="GET">
             <label for="serial-number">Заводской номер:</label>
             <input type="text" id="serial-number" name="serial-number">
             <input type="submit" value="Поиск">
         </form>
     </div>
-    
-    <!-- Ваша таблица с данными -->
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Зав. № машины</th>
-                <th>Модель техники</th>
-                <th>Модель двигателя</th>
-                <th>Зав. № двигателя</th>
-                <th>Модель трансмиссии</th>
-                <th>Зав. № трансмиссии</th>
-                <th>Модель ведущего моста</th>
-                <th>Зав. № ведущего моста</th>
-                <th>Модель управляемого моста</th>
-                <th>Зав. № управляемого моста</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for machine in machines %}
+    <div class="comp">
+        <h2 class="Text-comp">Информация о комплектации и технических <br/> характеристиках</h2>
+    </div>
+    <div id="search-results">
+        {% if search_header %}
+            <h3 class="search-header">{{ search_header }}</h3>
+        {% endif %}
+        {% if search_message %}
+            <p class="search-message">{{ search_message }}</p>
+        {% endif %}
+        <table border="1" id="search-table">
+            <thead>
                 <tr>
-                    <td>{{ machine.serial_number }}</td>
-                    <td>{{ machine.model.name }}</td>
-                    <td>{{ machine.engine_model.name }}</td>
-                    <td>{{ machine.engine_serial_number }}</td>
-                    <td>{{ machine.transmission_model.name }}</td>
-                    <td>{{ machine.transmission_serial_number }}</td>
-                    <td>{{ machine.drive_axle_model.name }}</td>
-                    <td>{{ machine.drive_axle_serial_number }}</td>
-                    <td>{{ machine.steer_axle_model.name }}</td>
-                    <td>{{ machine.steer_axle_serial_number }}</td>
+                    <th>Зав. № машины</th>
+                    <th>Модель техники</th>
+                    <th>Модель двигателя</th>
+                    <th>Зав. № двигателя</th>
+                    <th>Модель трансмиссии</th>
+                    <th>Зав. № трансмиссии</th>
+                    <th>Модель ведущего моста</th>
+                    <th>Зав. № ведущего моста</th>
+                    <th>Модель управляемого моста</th>
+                    <th>Зав. № управляемого моста</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for machine in machines %}
+                    <tr>
+                        <td>{{ machine.serial_number }}</td>
+                        <td>{{ machine.model.name }}</td>
+                        <td>{{ machine.engine_model.name }}</td>
+                        <td>{{ machine.engine_serial_number }}</td>
+                        <td>{{ machine.transmission_model.name }}</td>
+                        <td>{{ machine.transmission_serial_number }}</td>
+                        <td>{{ machine.drive_axle_model.name }}</td>
+                        <td>{{ machine.drive_axle_serial_number }}</td>
+                        <td>{{ machine.steer_axle_model.name }}</td>
+                        <td>{{ machine.steer_axle_serial_number }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

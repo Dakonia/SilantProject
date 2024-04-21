@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой Силант</title>
     <link rel="stylesheet" href="{% static 'css/Header.css' %}">
+
 </head>
 <body>
     <header>
@@ -18,10 +19,18 @@
         <div class="contact-info">
             <p>+7-8352-20-12-09  Telegram</p>
         </div>
-        <!-- Кнопка авторизации -->
-        <div class="login-button">
-            <a>Войти</a>
-        </div>
+        <!-- Проверяем, авторизован ли пользователь -->
+        {% if user.is_authenticated %}
+            <!-- Если пользователь авторизован, отображаем кнопку "Выход" -->
+            <div class="logout-button">
+                <a href="{% url 'logout' %}">Выход</a>
+            </div>
+        {% else %}
+            <!-- Если пользователь не авторизован, отображаем кнопку "Войти" -->
+            <div class="login-button">
+                <a href="{% url 'login' %}">Войти</a>
+            </div>
+        {% endif %}
         <div class="text-service">
             <p>Электронная сервисная книжка мой Силант</p>
         </div>

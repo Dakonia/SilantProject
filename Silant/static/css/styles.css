@@ -42,6 +42,20 @@ th {
     font-size: 30px;
 }
 
+.search-header {
+    font-family: Astra-bold;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Стили для сообщения результатов поиска */
+.search-message {
+    font-family: Astra-ital;
+    text-align: center;
+    font-size: 30px;
+    color: #D20A11;
+}
+
 /* Стили для поискового блока */
 .search-container {
     font-family: Astra-bold;
@@ -52,11 +66,12 @@ th {
 }
 
 .search-container label {
+    align-items: center;
     margin-top: 10px;
     color: #EBE6D6;
-    text-align: left;
+    text-align: center;
     font-size: 30px;
-    display: inline-block; /* Добавляем блочный элемент для правильного выравнивания */
+    display: inline-block; 
 }
 
 .search-container input[type=text] {
@@ -81,3 +96,19 @@ th {
 .search-container input[type=submit]:hover {
     background-color: #B8060D;
 }
+
+/* styles.css */
+
+.user-info {
+    font-size: 25px;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-info p {
+    margin: 5px 0;
+}
+
