@@ -1,0 +1,46 @@
+<!-- reclamation_list.html -->
+
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+    <!-- Подключаем файл стилей -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    
+    <div class="comp">
+        <h2 class="Text-comp">Список рекламаций</h2>
+    </div>
+    <div id="search-results">
+        <table border="1" id="reclamation-table">
+            <thead>
+                <tr>
+                    <th>Машина</th>
+                    <th>Дата отказа</th>
+                    <th>Наработка, м/час</th>
+                    <th>Узел отказа</th>
+                    <th>Описание отказа</th>
+                    <th>Способ восстановления</th>
+                    <th>Используемые запасные части</th>
+                    <th>Дата восстановления</th>
+                    <th>Время простоя техники</th>
+                    <th>Сервисная компания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for reclamation in reclamations %}
+                    <tr>
+                        <td>{{ reclamation.machine.serial_number }}</td>
+                        <td>{{ reclamation.failure_date }}</td>
+                        <td>{{ reclamation.operating_time }}</td>
+                        <td>{{ reclamation.failure_unit }}</td>
+                        <td>{{ reclamation.failure_description }}</td>
+                        <td>{{ reclamation.repair_procedure }}</td>
+                        <td>{{ reclamation.spare_parts }}</td>
+                        <td>{{ reclamation.repair_date }}</td>
+                        <td>{{ reclamation.nonuse_time }} дня/дней</td>
+                        <td>{{ reclamation.service_department }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

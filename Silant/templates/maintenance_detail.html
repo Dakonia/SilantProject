@@ -1,0 +1,45 @@
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/machine_detail.css' %}">
+    <title>Детальная информация о техническом обслуживании</title>
+    <div class="Backbody">
+        <div class="machine-details">
+            <h1 class="back_text">Детальная информация о ТО</h1>
+            <div class="details-table">
+                <div class="row">
+                    <div class="label">Машина:</div>
+                    <div class="value">{{ maintenance.machine }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Вид ТО:</div>
+                    <div class="value">{{ maintenance.maintenance_type }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Дата проведения ТО:</div>
+                    <div class="value">{{ maintenance.maintenance_date }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Наработка, м/час:</div>
+                    <div class="value">{{ maintenance.operating_time }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Номер заказ-наряда:</div>
+                    <div class="value">{{ maintenance.order_number }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Дата заказ-наряда:</div>
+                    <div class="value">{{ maintenance.order_date }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Организация, проводившая ТО:</div>
+                    <div class="value">{{ maintenance.maintenance_service }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Сервисная компания:</div>
+                    <div class="value">{{ maintenance.service_department }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

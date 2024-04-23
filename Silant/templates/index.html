@@ -24,11 +24,73 @@
             {% endif %}
         {% endif %}
     </div>
+    <div class="navigation-links">
+        <a href="{% url 'machine-list' %}">
+            <img src="{% static 'images/machine.jpg' %}" alt="Машины">
+            <p>Машины</p>
+        </a>
+        <a href="{% url 'maintenance-list' %}">
+            <img src="{% static 'images/to.jpg' %}" alt="ТО">
+            <p>ТО</p>
+        </a>
+        <a href="{% url 'reclamation-list' %}">
+            <img src="{% static 'images/rec.jpg' %}" alt="Рекламации">
+            <p>Рекламации</p>
+        </a>
+    </div>
     <!-- Форма поиска по номеру машины -->
     <div class="search-container">
         <form action="" method="GET">
             <label for="serial-number">Заводской номер:</label>
             <input type="text" id="serial-number" name="serial-number">
+            <input type="submit" value="Поиск">
+        </form>
+    </div>
+    <div class="search-container-max">
+        <form action="" method="GET">
+            <label for="model">Модель техники:</label>
+            <select name="model" id="model">
+                <option value="">-- Выберите модель --</option>
+                {% for machine_model in machine_models %}
+                    <option value="{{ machine_model.id }}">{{ machine_model.name }}</option>
+                {% endfor %}
+            </select>
+    
+            <label for="engine">Модель двигателя:</label>
+            <select name="engine" id="engine">
+                <option value="">-- Выберите модель --</option>
+                {% for engine_model in engine_models %}
+                    <option value="{{ engine_model.id }}">{{ engine_model.name }}</option>
+                {% endfor %}
+            </select>
+    
+            <label for="transmission">Модель трансмиссии:</label>
+            <select name="transmission" id="transmission">
+                <option value="">-- Выберите модель --</option>
+                {% for transmission_model in transmission_models %}
+                    <option value="{{ transmission_model.id }}">{{ transmission_model.name }}</option>
+                {% endfor %}
+            </select>
+    
+            <label for="drive_axle">Модель ведущего моста:</label>
+            <select name="drive_axle" id="drive_axle">
+                <option value="">-- Выберите модель --</option>
+                {% for drive_axle_model in drive_axle_models %}
+                    <option value="{{ drive_axle_model.id }}">{{ drive_axle_model.name }}</option>
+                {% endfor %}
+            </select>
+    
+            <label for="steer_axle">Модель управляемого моста:</label>
+            <select name="steer_axle" id="steer_axle">
+                <option value="">-- Выберите модель --</option>
+                {% for steer_axle_model in steer_axle_models %}
+                    <option value="{{ steer_axle_model.id }}">{{ steer_axle_model.name }}</option>
+                {% endfor %}
+            </select>
+    
+            <label for="serial-number">Заводской номер:</label>
+            <input type="text" id="serial-number" name="serial-number">
+            
             <input type="submit" value="Поиск">
         </form>
     </div>
@@ -60,16 +122,29 @@
             <tbody>
                 {% for machine in machines %}
                     <tr>
-                        <td>{{ machine.serial_number }}</td>
-                        <td>{{ machine.model.name }}</td>
-                        <td>{{ machine.engine_model.name }}</td>
-                        <td>{{ machine.engine_serial_number }}</td>
-                        <td>{{ machine.transmission_model.name }}</td>
-                        <td>{{ machine.transmission_serial_number }}</td>
-                        <td>{{ machine.drive_axle_model.name }}</td>
-                        <td>{{ machine.drive_axle_serial_number }}</td>
-                        <td>{{ machine.steer_axle_model.name }}</td>
-                        <td>{{ machine.steer_axle_serial_number }}</td>
+                        {% if user.is_authenticated %}
+                                <td><a href="{% url 'machine-detail' pk=machine.pk %}">{{ machine.serial_number }}</a></td>
+                                <td><a href="{% url 'model-detail' pk=machine.model.pk %}">{{ machine.model.name }}</a></td>
+                                <td><a href="{% url 'engine-detail' pk=machine.engine_model.pk %}">{{ machine.engine_model.name }}</a></td>
+                                <td>{{ machine.engine_serial_number }}</td>
+                                <td><a href="{% url 'transmission' pk=machine.transmission_model.pk %}">{{ machine.transmission_model.name }}</a></td>
+                                <td>{{ machine.transmission_serial_number }}</td>
+                                <td><a href="{% url 'drive-axle' pk=machine.drive_axle_model.pk %}">{{ machine.drive_axle_model.name }}</a></td>
+                                <td>{{ machine.drive_axle_serial_number }}</td>
+                                <td><a href="{% url 'steer-axle' pk=machine.steer_axle_model.pk %}">{{ machine.steer_axle_model.name }}</a></td>
+                                <td>{{ machine.steer_axle_serial_number }}</td>
+                            {% else %}
+                                <td>{{ machine.serial_number }}</td>
+                                <td>{{ machine.model.name }}</td>
+                                <td>{{ machine.engine_model.name }}</td>
+                                <td>{{ machine.engine_serial_number }}</td>
+                                <td>{{ machine.transmission_model.name }}</td>
+                                <td>{{ machine.transmission_serial_number }}</td>
+                                <td>{{ machine.drive_axle_model.name }}</td>
+                                <td>{{ machine.drive_axle_serial_number }}</td>
+                                <td>{{ machine.steer_axle_model.name }}</td>
+                                <td>{{ machine.steer_axle_serial_number }}</td>
+                            {% endif %}
                     </tr>
                 {% endfor %}
             </tbody>

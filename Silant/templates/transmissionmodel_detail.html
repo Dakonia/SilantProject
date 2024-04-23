@@ -1,0 +1,20 @@
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/detail.css' %}">
+    <div class="backbody">
+        <div class="machinemodel-details">
+            <h1 class="back_text">Детали модели трансмиссии</h1>
+            <div class="details-table">
+                <div class="row">
+                    <div class="label">Название модели:</div>
+                    <div class="value">{{ transmissionmodel.name }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Описание:</div>
+                    <div class="value">{{ transmissionmodel.description }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

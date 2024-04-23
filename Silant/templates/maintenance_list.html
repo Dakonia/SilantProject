@@ -1,0 +1,46 @@
+<!-- maintenance_list.html -->
+
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+    <!-- Подключаем файл стилей -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    
+    <div class="comp">
+        <h2 class="Text-comp">Список технического обслуживания<br/> Машин</h2>
+    </div>
+    <div id="search-results">
+        <table border="1" id="maintenance-table">
+            <thead>
+                <tr>
+                    <th>Инфо</th>
+                    <th>Машина</th>
+                    <th>Вид ТО</th>
+                    <th>Дата проведения ТО</th>
+                    <th>Наработка, м/час</th>
+                    <th>Номер заказ-наряда</th>
+                    <th>Дата заказ-наряда</th>
+                    <th>Организация, проводившая ТО</th>
+                    <th>Сервисная компания</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for maintenance in maintenances %}
+                    <tr>
+                        {% if user.is_authenticated %}
+                        <td><a href="{% url 'maintenance-detail' pk=maintenance.pk %}">Инфо</a></td>
+                        <td><a href="{% url 'machine-detail' pk=maintenance.machine.pk %}">{{ maintenance.machine.serial_number }}</a></td>
+                        <td><a href="{% url 'typeto' pk=maintenance.maintenance_type.pk %}"> {{ maintenance.maintenance_type }}</a></td>
+                        <td>{{ maintenance.maintenance_date }}</td>
+                        <td>{{ maintenance.operating_time }}</td>
+                        <td>{{ maintenance.order_number }}</td>
+                        <td>{{ maintenance.order_date }}</td>
+                        <td><a href="{% url 'service-to' pk=maintenance.maintenance_service.pk %}">{{ maintenance.maintenance_service }}</a></td>
+                        <td><a href="{% url 'service-dep' pk=maintenance.service_department.pk %}">{{ maintenance.service_department }}</a></td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

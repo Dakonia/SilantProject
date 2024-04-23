@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Astra-italic ;
+    src: url(../font/PT-Astra-Sans_Italic.ttf);
+}
+
+@font-face {
+    font-family: Astra-bold;
+    src: url(../font/PT-Astra-Sans_Bold.ttf);
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #EBE6D6;
+}
+.back_text {
+    font-family: Astra-bold;
+    text-align: center;
+}
+
+.machinemodel-details {
+    max-width: 90%;
+    margin-left: 40px;
+}
+
+.details-table {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    background-color: #163E6C;
+    padding: 20px;
+    border-radius: 10px;
+    border-collapse: collapse;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-gap: 10px;
+}
+
+.label, .value {
+    border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #ffffff;
+}
+
+.label {
+    font-family: Astra-bold;
+    font-weight: bold;
+}
+
+.value {
+    font-family: Astra-italic;
+}
+
+@media only screen and (max-width: 600px) {
+    .details-table {
+        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+    }
+    
+    .row {
+        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+    }
+
+    .label, .value {
+        width: auto; /* Убираем фиксированную ширину ячеек */
+    }
+
+    .machinemodel-details {
+        margin-left: 0; /* Убираем отступ слева */
+    }
+
+    .back_text{
+        margin-left: 30px;
+    }
+}
+
+

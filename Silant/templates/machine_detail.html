@@ -1,0 +1,81 @@
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/machine_detail.css' %}">
+    <title>Детальная информация о машине</title>
+    <div class="Backbody">
+    <div class="machine-details">
+        <h1 class="back_text">Машина с номером:{{ machine.serial_number }}</h1>
+        <div class="details-table">
+            <div class="row">
+                <div class="label">Модель техники:</div>
+                <div class="value">{{ machine.model.name }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Серийный номер:</div>
+                <div class="value">{{ machine.serial_number }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Модель двигателя:</div>
+                <div class="value">{{ machine.engine_model.name }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Серийный номер двигателя:</div>
+                <div class="value">{{ machine.engine_serial_number }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Модель трансмиссии:</div>
+                <div class="value">{{ machine.transmission_model.name }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Серийный номер трансмиссии:</div>
+                <div class="value">{{ machine.transmission_serial_number }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Модель ведущего моста:</div>
+                <div class="value">{{ machine.drive_axle_model.name }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Серийный номер ведущего моста:</div>
+                <div class="value">{{ machine.drive_axle_serial_number }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Модель управляемого моста:</div>
+                <div class="value">{{ machine.steer_axle_model.name }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Серийный номер управляемого моста:</div>
+                <div class="value">{{ machine.steer_axle_serial_number }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Договор поставки:</div>
+                <div class="value">{{ machine.delivery_contract }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Дата отгрузки с завода:</div>
+                <div class="value">{{ machine.shipment_date }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Клиент:</div>
+                <div class="value">{{ machine.client.name }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Грузополучатель:</div>
+                <div class="value">{{ machine.end_user }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Адрес поставки:</div>
+                <div class="value">{{ machine.shipping_address }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Комплектация (доп. опции):</div>
+                <div class="value">{{ machine.configuration }}</div>
+            </div>
+            <div class="row">
+                <div class="label">Сервисная компания:</div>
+                <div class="value">{{ machine.service_department.name }}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
