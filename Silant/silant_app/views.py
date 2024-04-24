@@ -14,6 +14,30 @@ class MachineListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
+
+        # Фильтрация по номеру машины
+        serial_number = self.request.GET.get('serial-number')
+        if serial_number:
+            queryset = queryset.filter(serial_number__icontains=serial_number)
+
+        # Фильтрация по моделям
+        model_id = self.request.GET.get('model')
+        engine_id = self.request.GET.get('engine')
+        transmission_id = self.request.GET.get('transmission')
+        drive_axle_id = self.request.GET.get('drive_axle')
+        steer_axle_id = self.request.GET.get('steer_axle')
+
+        if model_id:
+            queryset = queryset.filter(model_id=model_id)
+        if engine_id:
+            queryset = queryset.filter(engine_model_id=engine_id)
+        if transmission_id:
+            queryset = queryset.filter(transmission_model_id=transmission_id)
+        if drive_axle_id:
+            queryset = queryset.filter(drive_axle_model_id=drive_axle_id)
+        if steer_axle_id:
+            queryset = queryset.filter(steer_axle_model_id=steer_axle_id)
+
         user = self.request.user
         if user.groups.filter(name='Manager').exists():
             return queryset
@@ -26,21 +50,50 @@ class MachineListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        serial_number = self.request.GET.get('serial-number')
-        machines = context.get('machines')  # Получаем машины из контекста
-        if serial_number:
-            queryset = machines.filter(serial_number__icontains=serial_number)
-            if queryset.exists():
-                context['machines'] = queryset
-                context['search_message'] = ''
-            else:
-                context['machines'] = None
-                context['search_message'] = f'Машина с номером "{serial_number}" не найдена.'
-            context['search_header'] = 'Результат поиска:'
-        return context
-    
+        user = self.request.user
 
-  
+        # Инициализация переменных
+        machine_models = None
+        engine_models = None
+        transmission_models = None
+        drive_axle_models = None
+        steer_axle_models = None
+
+        if user.is_authenticated:
+            if user.groups.filter(name='Manager').exists():
+                machine_models = MachineModel.objects.all()
+                engine_models = EngineModel.objects.all()
+                transmission_models = TransmissionModel.objects.all()
+                drive_axle_models = DriveAxleModel.objects.all()
+                steer_axle_models = SteerAxleModel.objects.all()
+            
+            elif user.groups.filter(name='Service').exists():
+                service_department = user.servicedepartment
+                service_department_machines = Machine.objects.filter(service_department=service_department)
+                engine_models = EngineModel.objects.filter(machine__in=service_department_machines).distinct()
+                transmission_models = TransmissionModel.objects.filter(machine__in=service_department_machines).distinct()
+                drive_axle_models = DriveAxleModel.objects.filter(machine__in=service_department_machines).distinct()
+                steer_axle_models = SteerAxleModel.objects.filter(machine__in=service_department_machines).distinct()
+                machine_models = MachineModel.objects.filter(id__in=service_department_machines.values_list('model_id', flat=True)).distinct()
+
+
+            elif user.groups.filter(name='Client').exists():
+                client = user.client
+                machine_models = MachineModel.objects.filter(machine__client=client).distinct()
+                engine_models = EngineModel.objects.filter(machine__client=client).distinct()
+                transmission_models = TransmissionModel.objects.filter(machine__client=client).distinct()
+                drive_axle_models = DriveAxleModel.objects.filter(machine__client=client).distinct()
+                steer_axle_models = SteerAxleModel.objects.filter(machine__client=client).distinct()
+
+        # Передаем модели в контекст
+        context['machine_models'] = machine_models
+        context['engine_models'] = engine_models
+        context['transmission_models'] = transmission_models
+        context['drive_axle_models'] = drive_axle_models
+        context['steer_axle_models'] = steer_axle_models
+
+        return context
+ 
 class MaintenanceListView(ListView):
     model = Maintenance
     template_name = 'maintenance_list.html'
