@@ -5,11 +5,106 @@
 {% block content %}
     <!-- Подключаем файл стилей -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <div class="comp">
+        <h2 class="Text-comp">Проверьте технические обслуживание техники <br/> "Силант"</h2>
+    </div>
+
+    <div class="user-info">
+        {% if user.is_authenticated %}
+            {% if user.groups.all %}
+                {% for group in user.groups.all %}
+                    {% if group.name == "Manager" %}
+                        <p>Менеджер: {{ user.username }}</p>
+                    {% elif group.name == "Service" %}
+                        <p>Сервис: {{ user.servicedepartment.name }}</p>
+                    {% elif group.name == "Client" %}
+                        <p>Клиент: {{ user.client.name }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="navigation-links">
+        <a href="{% url 'machine-list' %}">
+            <img src="{% static 'images/machine.jpg' %}" alt="Машины">
+            <p>Машины</p>
+        </a>
+        <a href="{% url 'maintenance-list' %}">
+            <img src="{% static 'images/to.jpg' %}" alt="ТО">
+            <p>ТО</p>
+        </a>
+        <a href="{% url 'reclamation-list' %}">
+            <img src="{% static 'images/rec.jpg' %}" alt="Рекламации">
+            <p>Рекламации</p>
+        </a>
+    </div>
+    <div class="add-machine-container">
+        {% if user.is_authenticated %}
+        {% if 'Manager' in user.groups.all|join:", " or 'Client' in user.groups.all|join:", " or 'Service' in user.groups.all|join:", " %}
+                <a href="{% url 'maintenance-create' %}" class="add-machine-button">Добавить ТО</a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+    <div class="search-container-max">
+        <form action="" method="GET" class="search-form-max">
+            <div class="search-item-row">
+                <div class="search-item-max">
+                    <label for="maintenance-type">Вид ТО:</label>
+                    <select name="maintenance-type" id="maintenance-type">
+                        <option value="">Выберите вид ТО</option>
+                        {% for maintenance_type in maintenance_types %}
+                            <option value="{{ maintenance_type.id }}">{{ maintenance_type.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="search-item-max">
+                    <label for="maintenance-service">Организация, проводившая ТО:</label>
+                    <select name="maintenance-service" id="maintenance-service">
+                        <option value="">Выберите организацию</option>
+                        {% for maintenance_service in maintenance_services %}
+                            <option value="{{ maintenance_service.id }}">{{ maintenance_service.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="search-item-max">
+                    <label for="service-department">Сервисная компания:</label>
+                    <select name="service-department" id="service-department">
+                        <option value="">Выберите сервисную компанию</option>
+                        {% for service_department in service_departments %}
+                            <option value="{{ service_department.id }}">{{ service_department.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+    
+                <div class="search-item-max">
+                    <label for="serial-number">Заводской номер машины:</label>
+                    <input type="text" id="serial-number" name="serial-number">
+                </div>
+            </div>    
+            <div class="search-item-max search-item-button">
+                <input type="submit" value="Поиск">
+            </div>
+        </form>
+    </div>
+{% endif %}
     
     <div class="comp">
         <h2 class="Text-comp">Список технического обслуживания<br/> Машин</h2>
     </div>
     <div id="search-results">
+
+        {% if search_header %}
+            <h3 class="search-header">{{ search_header }}</h3>
+        {% endif %}
+        {% if search_message %}
+            <p class="search-message">{{ search_message }}</p>
+        {% endif %}
         <table border="1" id="maintenance-table">
             <thead>
                 <tr>

@@ -1,9 +1,10 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import *
 from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy
 
 
 class MachineListView(ListView):
@@ -13,7 +14,7 @@ class MachineListView(ListView):
     ordering = ['shipment_date']  # Сортировка по дате отгрузки с завода
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = super().get_queryset().order_by('-shipment_date')
 
         # Фильтрация по номеру машины
         serial_number = self.request.GET.get('serial-number')
@@ -92,8 +93,18 @@ class MachineListView(ListView):
         context['drive_axle_models'] = drive_axle_models
         context['steer_axle_models'] = steer_axle_models
 
+        if not context['machines']:
+            context['search_message'] = "Данная машина не найдена"
+
         return context
+    
+class MachineCreateView(CreateView):
+    model = Machine
+    form_class = MachineForm
+    template_name = 'machine_create.html'
+    success_url = reverse_lazy('machine-list')    
  
+
 class MaintenanceListView(ListView):
     model = Maintenance
     template_name = 'maintenance_list.html'
@@ -103,14 +114,83 @@ class MaintenanceListView(ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         user = self.request.user
+
+        # Фильтрация по полям
+        maintenance_type_id = self.request.GET.get('maintenance-type')
+        maintenance_service_id = self.request.GET.get('maintenance-service')
+        serial_number = self.request.GET.get('serial-number')
+
+        if maintenance_type_id:
+            queryset = queryset.filter(maintenance_type_id=maintenance_type_id)
+        if maintenance_service_id:
+            queryset = queryset.filter(maintenance_service_id=maintenance_service_id)
+        if serial_number:
+            queryset = queryset.filter(machine__serial_number__icontains=serial_number)
+
+        # Применение фильтров для разных типов пользователей
         if user.groups.filter(name='Manager').exists():
             return queryset
         elif user.groups.filter(name='Service').exists():
-            return queryset.filter(service_department=user.servicedepartment)
+            # Проверяем, есть ли у пользователя ссылка на сервисное подразделение
+            if hasattr(user, 'servicedepartment'):
+                return queryset.filter(service_department=user.servicedepartment)
+            else:
+                # Если у пользователя нет ссылки на сервисное подразделение, вернуть пустой queryset
+                return Maintenance.objects.none()
         elif user.groups.filter(name='Client').exists():
             return queryset.filter(machine__client=user.client)
         else:
             return Maintenance.objects.none()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        # Инициализация переменных
+        maintenance_types = None
+        maintenance_services = None
+        service_departments = None
+
+        if user.is_authenticated:
+            if user.groups.filter(name='Manager').exists():
+                maintenance_types = MaintenanceType.objects.all()
+                maintenance_services = ServiceTO.objects.all()
+                service_departments = ServiceDepartment.objects.all()
+
+            elif user.groups.filter(name='Service').exists():
+                service_department = user.servicedepartment
+                machines = Machine.objects.filter(service_department=service_department)
+                maintenance_types = MaintenanceType.objects.filter(maintenance__machine__in=machines).distinct()
+                maintenance_services = ServiceTO.objects.filter(maintenance__machine__in=machines).distinct()
+                service_departments = ServiceDepartment.objects.filter(id=service_department.id)
+
+            elif user.groups.filter(name='Client').exists():
+                client = user.client
+                client_machines = Machine.objects.filter(client=client)
+                maintenance_services = ServiceTO.objects.filter(maintenance__machine__in=client_machines).distinct()
+                maintenance_types = MaintenanceType.objects.filter(maintenance__machine__in=client_machines).distinct()
+                service_departments = ServiceDepartment.objects.filter(maintenance__machine__in=client_machines).distinct()
+
+    
+
+        # Передача значений в контекст
+        context['maintenance_types'] = maintenance_types
+        context['maintenance_services'] = maintenance_services
+        context['service_departments'] = service_departments
+
+        if not context['maintenances']:
+            context['search_message'] = "Данное ТО не найдено"
+
+
+        return context
+
+
+class MaintenanceCreateView(CreateView):
+    model = Maintenance
+    form_class = MaintenanceForm
+    template_name = 'maintenance_create.html'
+    success_url = reverse_lazy('maintenance-list')        
+  
         
 class MaintenanceDetailView(DetailView):
     model = Maintenance
@@ -122,12 +202,16 @@ class ReclamationListView(ListView):
     model = Reclamation
     template_name = 'reclamation_list.html'
     context_object_name = 'reclamations'
-    ordering = ['-failure_date']   
-
+    ordering = ['-failure_date']
 
     def get_queryset(self):
         user = self.request.user
         queryset = super().get_queryset()
+        serial_number = self.request.GET.get('serial-number')
+
+        if serial_number:
+            queryset = queryset.filter(machine__serial_number__icontains=serial_number)
+
         if user.is_authenticated:
             if user.groups.filter(name='Manager').exists():
                 return queryset
@@ -135,10 +219,53 @@ class ReclamationListView(ListView):
                 return queryset.filter(service_department=user.servicedepartment)
             elif user.groups.filter(name='Client').exists():
                 return queryset.filter(machine__client=user.client)
-        # Если пользователь не принадлежит ни к одной группе или не аутентифицирован, возвращаем пустой QuerySet
-        return queryset.none()      
+        return queryset.none()  
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        # Инициализация переменных
+        failure_units = None
+        repair_procedures = None
+        service_departments = None
+
+        if user.is_authenticated:
+            if user.groups.filter(name='Manager').exists():
+                failure_units = FailureUnit.objects.all()
+                repair_procedures = RepairProcedure.objects.all()
+                service_departments = ServiceDepartment.objects.all()
+
+            elif user.groups.filter(name='Service').exists():
+                service_department = user.servicedepartment
+                machines = Machine.objects.filter(service_department=service_department)
+                failure_units = FailureUnit.objects.filter(reclamation__machine__in=machines).distinct()
+                repair_procedures = RepairProcedure.objects.filter(reclamation__machine__in=machines).distinct()
+                service_departments = ServiceDepartment.objects.filter(id=service_department.id)
+
+            elif user.groups.filter(name='Client').exists():
+                client = user.client
+                client_machines = Machine.objects.filter(client=client)
+                failure_units = FailureUnit.objects.filter(reclamation__machine__in=client_machines).distinct()
+                repair_procedures = RepairProcedure.objects.filter(reclamation__machine__in=client_machines).distinct()
+                service_departments = ServiceDepartment.objects.filter(reclamation__machine__in=client_machines).distinct()
+
+        # Передача значений в контекст
+        context['failure_units'] = failure_units
+        context['repair_procedures'] = repair_procedures
+        context['service_departments'] = service_departments
+
+        if not context['reclamations']:
+            context['search_message'] = "Данная рекламация не найдена"
 
 
+        return context    
+
+class ReclamationCreateView(CreateView):
+    model = Reclamation
+    form_class = ReclamationForm
+    template_name = 'reclamation_create.html'
+    success_url = reverse_lazy('reclamation-list')
 
 
 def login_view(request):
@@ -159,11 +286,6 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('/')
-
-class MachineDetailView(DetailView):
-    model = Machine
-    template_name = 'Detail/machine_detail.html'
-    context_object_name = 'machine'
 
 
 
@@ -230,6 +352,17 @@ class ServiceTODetailView(DetailView):
     template_name = 'serviceto_detail.html'
     context_object_name = 'servicetomodel'
 
+
+class RepairProcedureDetailView(DetailView):
+    model = RepairProcedure
+    template_name = 'repairprocedure_detail.html'
+    context_object_name = 'repairprocedure'
+
+
+class FailureUnitDetailView(DetailView):
+    model = FailureUnit
+    template_name = 'failureunit_detail.html'
+    context_object_name = 'failureunit'    
 
     
                

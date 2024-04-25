@@ -1,0 +1,53 @@
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/machine_detail.css' %}">
+    <title>Детальная информация о Рекламации</title>
+    <div class="Backbody">
+        <div class="machine-details">
+            <h1 class="back_text">Детальная информация о Рекламации</h1>
+            <div class="details-table">
+                <div class="row">
+                    <div class="label">Машина:</div>
+                    <div class="value">{{ reclamation.machine }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Дата отказа:</div>
+                    <div class="value">{{ reclamation.failure_date }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Наработка м/час:</div>
+                    <div class="value">{{ reclamation.operating_time }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Узел отказа:</div>
+                    <div class="value">{{ reclamation.failure_unit  }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Описание отказа :</div>
+                    <div class="value">{{ reclamation.failure_description }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Способ восстановления:</div>
+                    <div class="value">{{ reclamation.repair_procedure }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Используемые запчасти:</div>
+                    <div class="value">{{ reclamation.spare_parts }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Дата восстановления:</div>
+                    <div class="value">{{ reclamation.repair_date }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Время простоя техники:</div>
+                    <div class="value">{{ reclamation.nonuse_time }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">Сервисная компания:</div>
+                    <div class="value">{{ reclamation.service_department }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

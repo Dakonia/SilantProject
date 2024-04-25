@@ -38,7 +38,15 @@
             <p>Рекламации</p>
         </a>
     </div>
+    <div class="add-machine-container">
+        {% if user.is_authenticated %}
+            {% if 'Manager' in user.groups.all|join:", " %}
+                <a href="{% url 'machine-create' %}" class="add-machine-button">Добавить Машину</a>
+            {% endif %}
+        {% endif %}
+    </div>
     <!-- Форма поиска по номеру машины -->
+    {% if not user.is_authenticated %}
     <div class="search-container">
         <form action="" method="GET">
             <label for="serial-number">Заводской номер:</label>
@@ -46,54 +54,71 @@
             <input type="submit" value="Поиск">
         </form>
     </div>
+{% endif %}
+    {% if user.is_authenticated %}
     <div class="search-container-max">
-        <form action="" method="GET">
-            <label for="model">Модель техники:</label>
-            <select name="model" id="model">
-                <option value="">-- Выберите модель --</option>
-                {% for machine_model in machine_models %}
-                    <option value="{{ machine_model.id }}">{{ machine_model.name }}</option>
-                {% endfor %}
-            </select>
+        <form action="" method="GET" class="search-form-max">
+            <div class="search-item-row">
+                <div class="search-item-max">
+                    <label for="model">Модель техники:</label>
+                    <select name="model" id="model">
+                        <option value="">Модель</option>
+                        {% for machine_model in machine_models %}
+                            <option value="{{ machine_model.id }}">{{ machine_model.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
     
-            <label for="engine">Модель двигателя:</label>
-            <select name="engine" id="engine">
-                <option value="">-- Выберите модель --</option>
-                {% for engine_model in engine_models %}
-                    <option value="{{ engine_model.id }}">{{ engine_model.name }}</option>
-                {% endfor %}
-            </select>
+                <div class="search-item-max">
+                    <label for="engine">Модель двигателя:</label>
+                    <select name="engine" id="engine">
+                        <option value="">Двигатель</option>
+                        {% for engine_model in engine_models %}
+                            <option value="{{ engine_model.id }}">{{ engine_model.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
     
-            <label for="transmission">Модель трансмиссии:</label>
-            <select name="transmission" id="transmission">
-                <option value="">-- Выберите модель --</option>
-                {% for transmission_model in transmission_models %}
-                    <option value="{{ transmission_model.id }}">{{ transmission_model.name }}</option>
-                {% endfor %}
-            </select>
+                <div class="search-item-max">
+                    <label for="transmission">Модель трансмиссии:</label>
+                    <select name="transmission" id="transmission">
+                        <option value="">Трансмиссия</option>
+                        {% for transmission_model in transmission_models %}
+                            <option value="{{ transmission_model.id }}">{{ transmission_model.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
     
-            <label for="drive_axle">Модель ведущего моста:</label>
-            <select name="drive_axle" id="drive_axle">
-                <option value="">-- Выберите модель --</option>
-                {% for drive_axle_model in drive_axle_models %}
-                    <option value="{{ drive_axle_model.id }}">{{ drive_axle_model.name }}</option>
-                {% endfor %}
-            </select>
+                <div class="search-item-max">
+                    <label for="drive_axle">Модель ведущего моста:</label>
+                    <select name="drive_axle" id="drive_axle">
+                        <option value="">Ведущий мост</option>
+                        {% for drive_axle_model in drive_axle_models %}
+                            <option value="{{ drive_axle_model.id }}">{{ drive_axle_model.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
     
-            <label for="steer_axle">Модель управляемого моста:</label>
-            <select name="steer_axle" id="steer_axle">
-                <option value="">-- Выберите модель --</option>
-                {% for steer_axle_model in steer_axle_models %}
-                    <option value="{{ steer_axle_model.id }}">{{ steer_axle_model.name }}</option>
-                {% endfor %}
-            </select>
-    
-            <label for="serial-number">Заводской номер:</label>
-            <input type="text" id="serial-number" name="serial-number">
-            
-            <input type="submit" value="Поиск">
+                <div class="search-item-max">
+                    <label for="steer_axle">Модель управляемого моста:</label>
+                    <select name="steer_axle" id="steer_axle">
+                        <option value="">Управляемый мост</option>
+                        {% for steer_axle_model in steer_axle_models %}
+                            <option value="{{ steer_axle_model.id }}">{{ steer_axle_model.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>    
+            <div class="search-item-single">
+                <label for="serial-number">Заводской номер:</label>
+                <input type="text" id="serial-number" name="serial-number">
+            </div>
+            <div class="search-item-max search-item-button">
+                <input type="submit" value="Поиск">
+            </div>
         </form>
     </div>
+    {% endif %}
     <div class="comp">
         <h2 class="Text-comp">Информация о комплектации и технических <br/> характеристиках</h2>
     </div>

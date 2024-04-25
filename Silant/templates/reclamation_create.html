@@ -1,0 +1,13 @@
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/create.css' %}">
+<div class="container">
+    <h2 class="heading">Добавить Рекламации</h2>
+    <form method="post" class="form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Добавить</button>
+    </form>
+</div>
+{% endblock %}

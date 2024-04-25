@@ -1,0 +1,64 @@
+/* styles.css */
+
+body {
+    background-color: #EBE6D6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    color: white;
+    background-color: #163E6C;
+    margin: 50px auto;
+    width: 80%;
+    max-width: 600px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование по горизонтали */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block; /* Для переноса надписи на новую строку */
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #EBE6D6;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}

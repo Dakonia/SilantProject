@@ -15,6 +15,9 @@ body {
     padding: 0;
 }
 table {
+    border-radius: 15px;
+    margin-left: 10px;
+    max-width: 99%;
     margin-top: 30px;
     width: 100%;
     border-collapse: collapse;
@@ -24,7 +27,8 @@ th, td {
     text-align: center;
     font-family: Astra-ital;
     padding: 8px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 3px solid #163E6C;
+    border: 3px solid #163E6C;
     background-color: #EBE6D6;
 }
 
@@ -137,4 +141,116 @@ th {
     margin-top: 5px; /* Adjust margin as needed */
     font-size: 24px; /* Adjust font size as needed */
 }
+
+
+.search-container-max {
+    border-radius: 15px;
+    margin-left: 50px;
+    max-width: 90%;
+    margin-top: 30px;
+    padding: 20px;
+    background-color:#EBE6D6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 2px solid #163E6C; 
+}
+
+.search-container-max .search-form-max {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-container-max .search-item-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.search-container-max .search-item-max {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px; /* Расстояние между элементами */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стили для текстовых заголовков */
+.search-container-max label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Стили для выпадающих списков */
+.search-container-max select {
+    margin-top: 20px;
+    width: 200px; /* Ширина списка */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Стили для поля ввода */
+.search-container-max input[type="text"] {
+    width: 200px; /* Ширина поля */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Стили для кнопки "Поиск" */
+.search-container-max input[type="submit"] {
+    margin: 50px auto 0 auto; /* Устанавливаем автоматическое значение для боковых отступов и верхнего отступа */
+    padding: 10px 15px; /* Уменьшаем внутренние отступы кнопки */
+    width: 150px; /* Устанавливаем ширину кнопки автоматически */
+    max-width: 150px; /* Максимальная ширина кнопки */
+    background-color:#163E6C; /* Зеленый цвет */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* При наведении у кнопки также будет уменьшаться ширина */
+.search-container-max input[type="submit"]:hover {
+    background-color: #45a049; /* Темно-зеленый цвет при наведении */
+    padding: 10px 15px; /* Уменьшаем внутренние отступы кнопки */
+}
+
+.search-container-max .search-item-single {
+    text-align: center;
+    align-items: center;
+    margin-top: 10px; /* Отступ сверху для отдельного элемента */
+}
+.add-machine-container {
+    text-align: center; /* Выравниваем содержимое по центру */
+    margin-top: 0px;
+    margin-bottom: 100px; /* Добавляем отступ сверху, если нужно */
+}
+
+.add-machine-button {
+    margin-top: 30px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #163E6C; /* Зеленый цвет */
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    /* Центрирование по горизонтали */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.add-machine-button:hover {
+    background-color: #45a049; /* Темно-зеленый при наведении */
+}
+
 
