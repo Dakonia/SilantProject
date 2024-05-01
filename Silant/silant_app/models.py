@@ -116,7 +116,7 @@ class Machine(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, verbose_name="Клиент")
     end_user = models.CharField(max_length=255, verbose_name="Грузополучатель (конечный потребитель)")
     shipping_address = models.CharField(max_length=255, verbose_name="Адрес поставки (эксплуатации)")
-    configuration = models.TextField(max_length=1000, default="Стандарт", verbose_name="Комплектация (доп. опции)")
+    configuration = models.TextField(max_length=80, default="Стандарт", verbose_name="Комплектация (доп. опции)")
     service_department = models.ForeignKey(ServiceDepartment, on_delete=models.CASCADE, verbose_name="Сервисная компания")
 
     def __str__(self):
@@ -142,9 +142,9 @@ class Reclamation(models.Model):
     failure_date = models.DateField(verbose_name="Дата отказа")
     operating_time = models.IntegerField(default=0, verbose_name="Наработка, м/час")
     failure_unit = models.ForeignKey(FailureUnit, on_delete=models.CASCADE, verbose_name="Узел отказа")
-    failure_description = models.TextField(max_length=1000, verbose_name="Описание отказа")
+    failure_description = models.TextField(max_length=80, verbose_name="Описание отказа")
     repair_procedure = models.ForeignKey(RepairProcedure, on_delete=models.CASCADE, verbose_name="Способ восстановления")
-    spare_parts = models.TextField(max_length=1000, blank=True, verbose_name="Используемые запасные части")
+    spare_parts = models.TextField(max_length=80, blank=True, verbose_name="Используемые запасные части")
     repair_date = models.DateField(verbose_name="Дата восстановления")
     nonuse_time = models.IntegerField(default=0, verbose_name="Время простоя техники")
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE, verbose_name="Машина")

@@ -1,0 +1,11 @@
+<!-- machine_delete.html -->
+
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+    <h2>Вы уверены, что хотите удалить машину {{ machine.serial_number }}?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        <a href="{% url 'machine-detail' machine.pk %}">Отмена</a>
+    </form>
+{% endblock %}

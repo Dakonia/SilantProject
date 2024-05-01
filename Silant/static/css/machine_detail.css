@@ -55,6 +55,61 @@ body {
     font-family: Astra-italic;
 }
 
+.machine-button {
+    text-align: center; /* Центрируем кнопки по горизонтали */
+    margin-top: 20px; /* Отступ сверху */
+    margin-bottom: 20px;
+}
+
+.edit-button, .delete-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: #163E6C;
+    border: none;
+    border-radius: 5px;
+    font-family: Astra-bold;
+    font-size: 16px;
+}
+
+.edit-button:hover, .delete-button:hover {
+    background-color: #45a049; /* Темно-зеленый при наведении */
+}
+
+.delete-button {
+    background-color: #B8060D; /* Красный цвет */
+}
+
+.delete-button:hover {
+    background-color: #D20A11; /* Темно-красный при наведении */
+}
+
+.delete-button:hover {
+    background-color: #D20A11; /* Темно-красный при наведении */
+}
+.back-cont{
+    font-size: 20px;
+}
+
+.back-button {
+    margin-top: 20px;
+    font-family: Astra-bold;
+    background-color: #163E6C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.back-button:hover {
+    font-family: Astra-bold;
+    background-color: rgb(150, 168, 215);
+}
+
+
 @media only screen and (max-width: 600px) {
     .details-table {
         grid-template-columns: auto; /* Изменяем количество столбцов на один */
@@ -73,5 +128,13 @@ body {
     }
     .back_text{
         margin-right: 0px;
+    }
+    .back-cont{
+        text-align: center;
+        margin-left: 40px;
+    }
+    .machine-button{
+        text-align: center;
+        margin-left: 40px;
     }
 }

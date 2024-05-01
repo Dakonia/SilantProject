@@ -1,10 +1,11 @@
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import *
 from django.shortcuts import render, redirect
 from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+
 
 
 class MachineListView(ListView):
@@ -97,13 +98,18 @@ class MachineListView(ListView):
             context['search_message'] = "Данная машина не найдена"
 
         return context
-    
+        
+
 class MachineCreateView(CreateView):
     model = Machine
     form_class = MachineForm
     template_name = 'machine_create.html'
     success_url = reverse_lazy('machine-list')    
  
+class MachineDetailView(DetailView):
+    model = Machine
+    template_name = 'machine_detail.html'
+    context_object_name = 'machine'
 
 class MaintenanceListView(ListView):
     model = Maintenance
@@ -183,6 +189,12 @@ class MaintenanceListView(ListView):
 
 
         return context
+    
+class MaintenanceEditView(UpdateView):
+    model = Maintenance
+    form_class = MaintenanceFormEdit
+    template_name = 'maintenance_edit.html'  # Создайте шаблон machine_edit.html
+    success_url = reverse_lazy('maintenance-list')    
 
 
 class MaintenanceCreateView(CreateView):
@@ -195,7 +207,26 @@ class MaintenanceCreateView(CreateView):
 class MaintenanceDetailView(DetailView):
     model = Maintenance
     template_name = 'maintenance_detail.html'  
-    context_object_name = 'maintenance'        
+    context_object_name = 'maintenance'  
+
+
+class MachineEditView(UpdateView):
+    model = Machine
+    form_class = MachineFormEdit
+    template_name = 'machine_edit.html'  # Создайте шаблон machine_edit.html
+    success_url = reverse_lazy('machine-list')
+
+
+class MachineDeleteView(DeleteView):
+    model = Machine
+    success_url = reverse_lazy('machine-list')
+    template_name = 'machine_delete.html'     
+
+
+class MaintenanceDeleteView(DeleteView):
+    model = Maintenance 
+    success_url = reverse_lazy('maintenance-list')
+    template_name = 'maintenance_delete.html' 
         
 
 class ReclamationListView(ListView):
@@ -259,13 +290,27 @@ class ReclamationListView(ListView):
             context['search_message'] = "Данная рекламация не найдена"
 
 
-        return context    
+        return context  
+     
 
 class ReclamationCreateView(CreateView):
     model = Reclamation
     form_class = ReclamationForm
     template_name = 'reclamation_create.html'
     success_url = reverse_lazy('reclamation-list')
+
+
+class REclamationEditView(UpdateView):
+    model = Reclamation
+    form_class = ReclamationFormEdit
+    template_name = 'reclamation_edit.html'  # Создайте шаблон machine_edit.html
+    success_url = reverse_lazy('reclamation-list')  
+
+
+class ReclamationDeleteView(DeleteView):
+    model = Reclamation  
+    success_url = reverse_lazy('reclamation-list')
+    template_name = 'reclamation-delete.html'      
 
 
 def login_view(request):
@@ -295,10 +340,6 @@ class MaintenanceDetailView(DetailView):
     context_object_name = 'maintenance'    
 
 
-class MachineDetailView(DetailView):
-    model = Machine
-    template_name = 'machine_detail.html'
-    context_object_name = 'machine'
 
 
 class ReclamationDetailView(DetailView):
@@ -365,4 +406,7 @@ class FailureUnitDetailView(DetailView):
     context_object_name = 'failureunit'    
 
     
-               
+class ReferenceEntityViews(ListView):
+    model = ReferenceEntity
+    template_name = 'reference/reference-list.html'
+    context_object_name = "reference"

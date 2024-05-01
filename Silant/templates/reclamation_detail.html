@@ -5,7 +5,18 @@
     <title>Детальная информация о Рекламации</title>
     <div class="Backbody">
         <div class="machine-details">
-            <h1 class="back_text">Детальная информация о Рекламации</h1>
+            <div class="back-cont">
+                <button onclick="goBack()" class="back-button">Назад</button>
+                </div>
+            <h1 class="back_text">Детальная информация о Рекламации<br/>Машины с № {{ reclamation.machine }}</h1>
+            {% if user.is_authenticated %}
+        {% if 'Manager' in user.groups.all|join:", " or 'Service' in user.groups.all|join:", " %}
+            <div class="machine-button">
+                <a href="{% url 'reclamation-edit' reclamation.pk %}" class="edit-button">Редактировать</a>
+                <a href="{% url 'reclamation-delete' reclamation.pk %}" class="delete-button">Удалить</a>
+            </div>
+            {% endif %}
+            {% endif %}
             <div class="details-table">
                 <div class="row">
                     <div class="label">Машина:</div>
@@ -50,4 +61,9 @@
             </div>
         </div>
     </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 {% endblock %}

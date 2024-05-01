@@ -1,13 +1,26 @@
 {% extends 'flatpages/baseheader.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/create.css' %}">
-<div class="container">
-    <h2 class="heading">Добавить Техническое Обслуживание</h2>
-    <form method="post" class="form">
+<link rel="stylesheet" type="text/css" href="{% static 'css/create_to.css' %}">
+<div class="create-form-container">
+    <div class="back-cont">
+        <button onclick="goBack()" class="back-button">Назад</button>
+        </div>
+    <h2>Добавить Техническое Обслуживание</h2>
+    <form method="post" class="create-form">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% for field in form %}
+        <div class="row">
+            <div class="label">{{ field.label_tag }}</div>
+            <div class="value">{{ field }}</div>
+        </div>
+        {% endfor %}
         <button type="submit" class="submit-button">Добавить</button>
     </form>
 </div>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 {% endblock %}

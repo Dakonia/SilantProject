@@ -1,0 +1,11 @@
+<!-- machine_delete.html -->
+
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+    <h2>Вы уверены, что хотите удалить ТО для машины {{ maintenance.machine }}?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+        <a href="{% url 'maintenance-detail' maintenance.pk %}">Отмена</a>
+    </form>
+{% endblock %}

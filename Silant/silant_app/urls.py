@@ -26,4 +26,11 @@ urlpatterns = [
     path('reclamation/', ReclamationListView.as_view(), name='reclamation-list'),
     path('maintenance/create/', MaintenanceCreateView.as_view(), name='maintenance-create'),
     path('reclamation/create/', ReclamationCreateView.as_view(), name='reclamation-create'),
+    path('machine/<int:pk>/edit/', MachineEditView.as_view(), name='machine-edit'),
+    path('maintenance/<int:pk>/edit/', MaintenanceEditView.as_view(), name='maintenance-edit'),
+    path('reclamation/<int:pk>/edit/', REclamationEditView.as_view(), name='reclamation-edit'),
+    path('machine/<int:pk>/delete/', MachineDeleteView.as_view(), name='machine-delete'),
+    path('maintenance/<int:pk>/delete/', MaintenanceDeleteView.as_view(), name='maintenance-delete'),
+    path('reclamation/<int:pk>/delete', ReclamationDeleteView.as_view(), name='reclamation-delete'),
+    path('reference/', ReferenceEntityViews.as_view(), name='reference-list'),
 ]

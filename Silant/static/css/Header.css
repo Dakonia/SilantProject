@@ -15,7 +15,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    position: relative; /* Позиционируем header как relative для абсолютного позиционирования дочерних элементов */
+    position: relative; 
 }
 
 .logo img {
@@ -65,4 +65,38 @@ header {
     transform: translateX(-50%); 
 }
 
+@media only screen and (max-width: 768px) {
+    .logo img {
+        height: 70px; /* Уменьшаем высоту логотипа */
+    }
+    .contact-info {
+        font-size: 10px;
+        margin-top: -40px;
+    }
+    .text-service {
+        font-size: 23px; /* Уменьшаем размер шрифта */
+        margin-top: 35px; /* Уменьшаем отступ сверху */
+    }
+    .login-button,
+    .logout-button {
+        margin-right: -15px; /* Уменьшаем отступы между кнопками */
+    }
+}
+
+/* Для мобильных устройств шириной до 480px */
+@media only screen and (max-width: 480px) {
+    .logo img {
+        margin-top: 20px;
+        height: 50px; /* Еще больше уменьшаем высоту логотипа */
+    }
+    .text-service {
+        font-size: 20px; /* Еще больше уменьшаем размер шрифта */
+        margin-top: 35px; /* Еще больше уменьшаем отступ сверху */
+    }
+    .login-button,
+    .logout-button {
+        margin-top: 20px;
+        margin-right: -20px; /* Еще больше уменьшаем отступы между кнопками */
+    }
+}
 

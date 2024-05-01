@@ -9,6 +9,7 @@
     <div class="comp">
         <h2 class="Text-comp">Проверьте комплектацию и технические характеристики техники <br/> "Силант"</h2>
     </div>
+    {% if user.is_authenticated %}
     <div class="user-info">
         {% if user.is_authenticated %}
             {% if user.groups.all %}
@@ -24,6 +25,8 @@
             {% endif %}
         {% endif %}
     </div>
+    {% endif %}
+    {% if user.is_authenticated %}
     <div class="navigation-links">
         <a href="{% url 'machine-list' %}">
             <img src="{% static 'images/machine.jpg' %}" alt="Машины">
@@ -37,7 +40,14 @@
             <img src="{% static 'images/rec.jpg' %}" alt="Рекламации">
             <p>Рекламации</p>
         </a>
+        {% if 'Manager' in user.groups.all|join:", " %}
+        <a href="{% url 'reference-list' %}">
+            <img src="{% static 'images/sprav.jpg' %}" alt="Справочник">
+            <p>Справочник</p>
+        </a>
+        {% endif %}
     </div>
+    {% endif %}
     <div class="add-machine-container">
         {% if user.is_authenticated %}
             {% if 'Manager' in user.groups.all|join:", " %}
@@ -129,6 +139,7 @@
         {% if search_message %}
             <p class="search-message">{{ search_message }}</p>
         {% endif %}
+        <div class="table-container">
         <table border="1" id="search-table">
             <thead>
                 <tr>
@@ -174,5 +185,6 @@
                 {% endfor %}
             </tbody>
         </table>
+        </div>
     </div>
 {% endblock %}

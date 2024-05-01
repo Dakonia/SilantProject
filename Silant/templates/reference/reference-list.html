@@ -1,0 +1,53 @@
+<!-- maintenance_list.html -->
+
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+    <!-- Подключаем файл стилей -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+
+    <div class="comp">
+        <h2 class="Text-comp">Cправочники техники <br/> "Силант"</h2>
+    </div>
+
+    <div class="user-info">
+        {% if user.is_authenticated %}
+            {% if user.groups.all %}
+                {% for group in user.groups.all %}
+                    {% if group.name == "Manager" %}
+                        <p>Менеджер: {{ user.username }}</p>
+                    {% elif group.name == "Service" %}
+                        <p>Сервис: {{ user.servicedepartment.name }}</p>
+                    {% elif group.name == "Client" %}
+                        <p>Клиент: {{ user.client.name }}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="navigation-links">
+        <a href="{% url 'machine-list' %}">
+            <img src="{% static 'images/machine.jpg' %}" alt="Машины">
+            <p>Машины</p>
+        </a>
+        <a href="{% url 'maintenance-list' %}">
+            <img src="{% static 'images/to.jpg' %}" alt="ТО">
+            <p>ТО</p>
+        </a>
+        <a href="{% url 'reclamation-list' %}">
+            <img src="{% static 'images/rec.jpg' %}" alt="Рекламации">
+            <p>Рекламации</p>
+        </a>
+    </div>
+
+    <!-- Вывод всех справочников -->
+    <div class="reference-container">
+        <h3>Справочники:</h3>
+        <ul>
+            {% for entity in reference %}
+                {{ entity.name }}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
