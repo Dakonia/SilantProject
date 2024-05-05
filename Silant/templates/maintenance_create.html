@@ -1,7 +1,7 @@
 {% extends 'flatpages/baseheader.html' %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/create_to.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/create_tex.css' %}">
 <div class="create-form-container">
     <div class="back-cont">
         <button onclick="goBack()" class="back-button">Назад</button>
@@ -23,4 +23,5 @@
         window.history.back();
     }
 </script>
+{% include 'flatpages/footer.html' %}
 {% endblock %}

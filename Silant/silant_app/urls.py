@@ -1,9 +1,9 @@
-# urls.py
 from django.urls import path
 from .views import *
-from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
+
     path('', MachineListView.as_view(), name='machine-list'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'), 
@@ -33,4 +33,40 @@ urlpatterns = [
     path('maintenance/<int:pk>/delete/', MaintenanceDeleteView.as_view(), name='maintenance-delete'),
     path('reclamation/<int:pk>/delete', ReclamationDeleteView.as_view(), name='reclamation-delete'),
     path('reference/', ReferenceEntityViews.as_view(), name='reference-list'),
+    path('error/', error_view, name='error'), 
+    path('references/<int:pk>/', ReferenceEntityDetail.as_view(), name='reference-detail'),
+    path('engine/create/', EngineModelCreate.as_view(), name='create-engine'),
+    path('engine/<int:pk>/edit/', EngineModelUpdate.as_view(), name='engine-edit'),
+    path('engine/<int:pk>/delete/', EngineModelDelete.as_view(), name='engine-delete'),
+    path('machinmodel/create/', MachineModelCreate.as_view(), name='machinemodel-create'),
+    path('machinemodel/<int:pk>/edit', MachineModelUpdate.as_view(), name='machinemodel-edit'),
+    path('machinemodel/<int:pk>/delete/', MachineModelDelete.as_view(), name='machinemodel-delete'),
+    path('transmission/create/', TransmissionModelCreate.as_view(), name='transmission-create'),
+    path('transsmision/<int:pk>/edit/', TransmissiomModelUpdate.as_view(), name='transmission-edit'),
+    path('transmission/<int:pk>/delete', TranssmissionModelDelete.as_view(), name='transmission-delete'),
+    path('driveaxle/create/', DriveAxleCreate.as_view(), name='driveaxle-create'),
+    path('driveaxle/<int:pk>/edit/', DriveAxleUpdate.as_view(), name='driveaxle-edit'),
+    path('driveaxle/<int:pk>/delete/', DriveAxleDelete.as_view(), name='driveaxle-delete'),
+    path('steeraxle/create/', SteerAxleCreate.as_view(), name='steeraxle-create'),
+    path('steeraxle/<int:pk>/edit/', SteerAxleUpdate.as_view(), name='steeraxle-edit'),
+    path('steeraxle/<int:pk>/delete/', SteerAxleDelete.as_view(), name='steeraxle-delete'),
+    path('maintetnacetype/create/', MaintenanceTypeCreate.as_view(), name='totype-create'),
+    path('maintenancetype/<int:pk>/edit/', MaintenanceTypeUpdate.as_view(), name='totype-edit'),
+    path('maintenancetype/<int:pk>/delete/', MaintenanceTypeDelete.as_view(), name='totype-delete'),
+    path('serviceto/create/', ServiceToCreate.as_view(), name='seriveto-create'),
+    path('serviceto/<int:pk>/edit/', ServiceToUpdate.as_view(), name='serviceto-edit'),
+    path('serviceto/<int:pk>/delete/', ServiceToDelete.as_view(), name='serviceto-delete'),
+    path('repair/create/', RepairProcedureCreate.as_view(), name='repair-create'),
+    path('repair/<int:pk>/edit/', RepairProducerEdit.as_view(), name='repair-edit'),
+    path('repair/<int:pk>/delete/', RepairProducerDelete.as_view(), name='repair-delete'),
+    path('faile/create/', FailureUnitCreate.as_view(), name='faile-create'),
+    path('faile/<int:pk>/edit/', FailureUnitEdit.as_view(), name='faile-edit'),
+    path('faile/<int:pk>/delete/', FailureUnitDelete.as_view(), name='faile-delete'),
+    path('api/machines/', MachineList.as_view(), name='machine-list-api'),
+    path('api/machines/<int:pk>/', MachineDetail.as_view(), name='machine-detail-api'),
+    path('api/maintenances/', MaintenanceList.as_view(), name='maintenance-list-api'),
+    path('api/maintenances/<int:pk>/', MaintenanceDetail.as_view(), name='maintenance-detail-api'),
+    path('api/reclamations/', ReclamationList.as_view(), name='reclamation-list-api'),
+    path('api/reclamations/<int:pk>/', ReclamationDetail.as_view(), name='reclamation-detail-api'),
+
 ]

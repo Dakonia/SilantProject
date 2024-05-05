@@ -54,17 +54,19 @@ body {
 
 /* Стили для кнопки "Сохранить" */
 .edit-form .save-button {
-    display: block;
-    width: 100px;
-    padding: 10px;
+    display: inline-block; 
+    width: 120px; 
+    height: 50px; 
+    padding: 0; 
     text-align: center;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 50%;
-    margin-top: 20px;
+    margin-left: 40%;
+    margin-top: 10%;
+    
 }
 
 .edit-form .save-button:hover {
@@ -92,8 +94,15 @@ body {
     background-color: rgb(150, 168, 215);
 }
 
+#id_description {
+    height: 100px; /* Уменьшите высоту до желаемого размера */
+    width: 300px; /* Определите ширину по желанию */
+    resize: none; /* Отключите возможность изменения размера поля */
+}
+
 
 @media only screen and (max-width: 600px) {
+
     .edit-form .details-table {
         grid-template-columns: auto; /* Изменяем количество столбцов на один */
     }

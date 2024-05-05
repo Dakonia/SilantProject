@@ -5,7 +5,8 @@
 {% block content %}
     <!-- Подключаем файл стилей -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-
+    <script src="{% static 'js/index.js' %}"></script>
+    <div class="style-content">
     <div class="comp">
         <h2 class="Text-comp">Проверьте ремонтное обслуживание техники <br/> "Силант"</h2>
     </div>
@@ -147,4 +148,37 @@
         </table>
         </div>
     </div>
+    <section id="pagination" class="mt-2">
+        {% if page_obj.has_other_pages %}
+        <nav aria-label="Навигация по страницам таблицы">
+            <ul class="pagination justify-content-center mt-2">
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                    <span aria-hidden="true">&lsaquo;</span></a>
+                </li>
+                {% endif %}
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active" aria-current="page"><span class="page-link">{{ num }}</span>
+                        </li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><span
+                            aria-hidden="true">&rsaquo;</span></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </section>
+    </div>
+    {% include 'flatpages/footer.html' %}
 {% endblock %}

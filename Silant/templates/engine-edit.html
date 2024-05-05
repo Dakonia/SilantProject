@@ -1,0 +1,30 @@
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/maintenance_edit.css' %}">
+    <title>Редактировать машину</title>
+    <div class="Backbody">
+        <div class="back-cont">
+            <button onclick="goBack()" class="back-button">Назад</button>
+            </div>
+        <form class="edit-form" method="post">
+            {% csrf_token %}
+            <h1 class="back_text">Редактировать Двигатель</h1>
+            <div class="details-table">
+                {% for field in form %}
+                <div class="row">
+                    <div class="label">{{ field.label_tag }}</div>
+                    <div class="value">{{ field }}</div>
+                </div>
+                {% endfor %}
+                <button class="save-button" type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    {% include 'flatpages/footer.html' %}
+{% endblock %}

@@ -20,7 +20,7 @@
             <div class="details-table">
                 <div class="row">
                     <div class="label">Модель техники:</div>
-                    <div class="value">{{ machine.model.name }}</div>
+                    <div class="value"><a href="{% url 'model-detail' pk=machine.model.pk %}">{{ machine.model.name }}</a></div>
                 </div>
                 <div class="row">
                     <div class="label">Серийный номер:</div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="row">
                     <div class="label">Модель двигателя:</div>
-                    <div class="value">{{ machine.engine_model.name }}</div>
+                    <div class="value"><a href="{% url 'engine-detail' pk=machine.engine_model.pk %}">{{ machine.engine_model.name }}</a></div>
                 </div>
                 <div class="row">
                     <div class="label">Серийный номер двигателя:</div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="row">
                     <div class="label">Модель трансмиссии:</div>
-                    <div class="value">{{ machine.transmission_model.name }}</div>
+                    <div class="value"><a href="{% url 'transmission' pk=machine.transmission_model.pk %}">{{ machine.transmission_model.name }}</a></div>
                 </div>
                 <div class="row">
                     <div class="label">Серийный номер трансмиссии:</div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="row">
                     <div class="label">Модель ведущего моста:</div>
-                    <div class="value">{{ machine.drive_axle_model.name }}</div>
+                    <div class="value"><a href="{% url 'drive-axle' pk=machine.drive_axle_model.pk %}">{{ machine.drive_axle_model.name }}</a></div>
                 </div>
                 <div class="row">
                     <div class="label">Серийный номер ведущего моста:</div>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="row">
                     <div class="label">Модель управляемого моста:</div>
-                    <div class="value">{{ machine.steer_axle_model.name }}</div>
+                    <div class="value"><a href="{% url 'steer-axle' pk=machine.steer_axle_model.pk %}">{{ machine.steer_axle_model.name }}</a></div>
                 </div>
                 <div class="row">
                     <div class="label">Серийный номер управляемого моста:</div>
@@ -95,4 +95,5 @@
             window.history.back();
         }
     </script>
+    {% include 'flatpages/footer.html' %}
 {% endblock %}

@@ -1,0 +1,204 @@
+<!-- reference_detail.html -->
+
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+    <!-- Подключаем файл стилей -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/detail_sprav.css' %}">
+    <div class="back-cont">
+        <button onclick="goBack()" class="back-button">Назад</button>
+        </div>
+    <div class="comp">
+        <h1 class="back_text">Детали справочника "{{ reference.name }}"</h1>
+    </div>
+    <div class="machine-details">
+        <div class="details-table">
+    {% if reference.name == "Модель двигателя" %}
+       
+                <div class="add-button">
+                 <a href="{% url 'create-engine' %}" class="add-machine-button">Добавить двигатель</a>
+                </div>
+                {% for model in reference.enginemodel_set.all %}
+                <div class="row">
+                    <div class="label">Название модели: <a href="{% url 'engine-detail' pk=model.pk %}"> {{ model.name }}</a>
+                </div>
+                    <div class="value">Описание: {{ model.description }}
+                        <div class="style-button">
+                        <a href="{% url 'engine-edit' model.pk %}" class="edit-button">Редактировать</a>
+                        <a href="{% url 'engine-delete' model.pk %}" class="delete-button">Удалить</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% elif reference.name == "Модель техники" %}
+        
+            <a href="{% url 'machinemodel-create' %}" class="add-machine-button">Добавить модель</a>
+            {% for model in reference.machinemodel_set.all %}
+            <div class="row">
+                <div class="label">Название модели: <a href="{% url 'model-detail' pk=model.pk %}"> {{ model.name }}</a></div>
+                <div class="value">Описание: {{ model.description }}
+                    <div class="style-button">
+                    <a href="{% url 'machinemodel-edit' model.pk %}" class="edit-button">Редактировать</a>
+                    <a href="{% url 'machinemodel-delete' model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Модель трансмиссии" %}
+        
+    <a href="{% url 'transmission-create' %}" class="add-machine-button">Добавить трансмиссию</a>
+            {% for model in reference.transmissionmodel_set.all %}
+            <div class="row">
+                <div class="label">Название модели:<a href="{% url 'transmission' pk=model.pk %}"> {{ model.name }}</a></div>
+                <div class="value">Описание: {{ model.description }}
+                    <div class="style-button">
+                    <a href="{% url 'transmission-edit' model.pk %}" class="edit-button">Редактировать</a>
+                    <a href="{% url 'transmission-delete' model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        
+    {% elif reference.name == "Модель ведущего моста" %}
+            <a href="{% url 'driveaxle-create' %}" class="add-machine-button">Добавить ведуший мост</a>
+            {% for model in reference.driveaxlemodel_set.all %}
+            <div class="row">
+                <div class="label">Название модели:<a href="{% url 'drive-axle' pk=model.pk}" >{{ model.name }}</a></div>
+                <div class="value">Описание: {{ model.description }}
+                    <div class="style-button">
+                    <a href="{% url 'driveaxle-edit' model.pk %}" class="edit-button">Рекатировать</a>
+                    <a href="{% url 'driveaxle-delete' model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    {% elif reference.name == "Модель управляемого моста" %}
+            <a href="{% url 'steeraxle-create' %}" class="add-machine-button">Добавить Управляемый мост</a>
+            {% for model in reference.steeraxlemodel_set.all %}
+            <div class="row">
+                <div class="label">Название модели:<a href="{% url 'steer-axle' pk=model.pk %}" >{{ model.name }}</a></div>
+                <div class="value">Описание: {{ model.description }}
+                    <div class="style-button">
+                    <a href="{% url 'steeraxle-edit' model.pk %}" class="edit-button">Рекатировать</a>
+                    <a href="{% url 'steeraxle-delete' model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Клиент" %}
+            {% for model in reference.client_set.all %}
+            <div class="row">
+                <div class="label">Название модели: {{ model.name }}</div>
+                <div class="value">Описание: {{ model.description }}</div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Сервисная компания" %}
+            {% for model in reference.servicedepartment_set.all %}
+            <div class="row">
+                <div class="label">Название модели: {{ model.name }}</div>
+                <div class="value">Описание: {{ model.description }}</div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Вид ТО" %}
+    <a href="{% url 'totype-create' %}" class="add-machine-button">Добавить тип ТО</a>
+    {% for model in reference.maintenancetype_set.all %}
+        <div class="row">
+            <div class="label">Название модели:<a href="{% url 'typeto' pk=model.pk %}"> {{ model.name }}</a></div>
+            <div class="value">Описание: {{ model.description }}
+                <div class="style-button">
+                <a href="{% url 'totype-edit' pk=model.pk %}" class="edit-button">Редактировать</a>
+                <a href="{% url 'totype-delete' pk=model.pk %}" class="delete-button">Удалить</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% elif reference.name == "Организация проводившая ТО" %}
+    <a href="{% url 'seriveto-create' %}" class="add-machine-button">Добавить организацию</a>
+            {% for model in reference.serviceto_set.all %}
+            <div class="row">
+                <div class="label">Название модели: <a href="{% url 'service-to' pk=model.pk %}">{{ model.name }}</a></div>
+                <div class="value">Описание: {{ model.description }}
+                    <div class="style-button">
+                    <a href="{% url 'serviceto-edit' pk=model.pk %}" class="edit-button">Редкактировать</a>
+                    <a href="{% url 'serviceto-delete' pk=model.pk%}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Узел отказа" %}
+    <a href="{% url 'faile-create' %}" class="add-machine-button">Добавит узел отказа</a>
+            {% for model in reference.failureunit_set.all %}
+            <div class="row">
+                <div class="label">Название модели: <a href="{% url 'failureunit' pk=model.pk %}">{{ model.name }}</a></div>
+                <div class="value">Описание: {{ model.description }}
+                    <div class="style-button">
+                    <a href="{% url 'faile-edit' pk=model.pk %}" class="edit-button">Редактировать</a>
+                    <a href="{% url 'faile-delete' pk=model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Способ восстановления" %}
+    <a href="{% url 'repair-create' %}" class="add-machine-button">Добавить способ</a>
+            {% for model in reference.repairprocedure_set.all %}
+            <div class="row">
+                <div class="label">Название модели:<a href="{% url 'repairprocedure' pk=model.pk%}"> {{ model.name }}</a></div>
+                <div class="value">Описание: {{ model.description }}
+                    <div class="style-button">
+                    <a href="{% url 'repair-edit' pk=model.pk %}" class="edit-button">Редактировать</a>
+                    <a href="{% url 'repair-delete' pk=model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Машина" %}
+    <a href="{% url 'machine-create' %}" class="add-machine-button">Добавить Машину</a>
+            {% for model in reference.machine_set.all %}
+            <div class="row">
+                <div class="label">Название модели:<a href="{% url 'machine-detail' pk=model.pk %}"> {{ model.serial_number }}</a></div>
+                <div class="value">Описание: {{ model.client }}
+                    <div class="style-button">
+                    <a href="{% url 'machine-edit' pk=model.pk %}" class="edit-button">Редактировать</a>
+                    <a href="{% url 'machine-delete' pk=model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Техническое обслуживание" %}
+    <a href="{% url 'maintenance-create'%}" class="add-machine-button">Добавить тех обслуживание </a>
+            {% for model in reference.maintenance_set.all %}
+            <div class="row">
+                <div class="label">Название модели: <a href="{% url 'maintenance-detail' pk=model.pk %}">{{ model.machine }}</a></div>
+                <div class="value">Описание: {{ model.maintenance_type }}
+                    <div class="style-button">
+                    <a href="{% url 'maintenance-edit' pk=model.pk %}" class="edit-button">Редактировать</a>
+                    <a href="{% url 'maintenance-delete' pk=model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% elif reference.name == "Рекламации" %}
+    <a href="{% url 'reclamation-create' %}" class="add-machine-button">Добавить рекламацию</a>
+            {% for model in reference.reclamation_set.all %}
+            <div class="row">
+                <div class="label">Название модели: <a href="{% url 'reclamation-detail' pk=model.pk %}">{{ model.machine }}</a></div>
+                <div class="value">Описание: {{ model.failure_unit }}
+                    <div class="style-button">
+                    <a href="{% url 'reclamation-edit' pk=model.pk %}" class="edit-button">Редактировать</a>
+                    <a href="{% url 'reclamation-delete' pk=model.pk %}" class="delete-button">Удалить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    {% include 'flatpages/footer.html' %}
+{% endblock %}

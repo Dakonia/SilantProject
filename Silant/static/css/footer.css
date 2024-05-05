@@ -1,0 +1,50 @@
+@font-face {
+    font-family: Astra-bold;
+    src: url(../font/PT-Astra-Sans_Bold.ttf);
+}
+
+.footer {
+    position: absolute;
+    background-color: #163E6C;
+    color: white;
+    width: 100%;
+    margin-bottom: 0%;
+    margin-top: 20%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.footer-left {
+    font-family: Astra-bold;
+    margin-left: 10%;
+}
+.logo-footer img {
+    height: 50px;
+    padding: 0;
+}
+
+.footer-right {
+    font-family: Astra-bold;
+    text-align: right;
+    font-size: 20px;
+    margin-right: 30px;
+}
+
+
+@media only screen and (max-width: 768px){
+    .logo-footer img {
+        height: 30px;
+    }
+    .footer-right{
+        font-size: 10px;
+        margin-right: 5px;
+    }
+    .footer-left{
+        font-size: 10px;
+    }
+}

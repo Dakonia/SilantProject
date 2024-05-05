@@ -5,7 +5,7 @@
 {% block content %}
     <!-- Подключаем файл стилей -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-
+    <div class="style-content">
     <div class="comp">
         <h2 class="Text-comp">Cправочники техники <br/> "Силант"</h2>
     </div>
@@ -39,15 +39,22 @@
             <img src="{% static 'images/rec.jpg' %}" alt="Рекламации">
             <p>Рекламации</p>
         </a>
+        {% if 'Manager' in user.groups.all|join:", " %}
+        <a href="{% url 'reference-list' %}">
+            <img src="{% static 'images/sprav.jpg' %}" alt="Справочник">
+            <p>Справочник</p>
+        </a>
+        {% endif %}
     </div>
-
-    <!-- Вывод всех справочников -->
     <div class="reference-container">
-        <h3>Справочники:</h3>
-        <ul>
+        <h3 class="reference-header">Справочники:</h3>
+        <ul class="reference-list">
             {% for entity in reference %}
-                {{ entity.name }}
+                <li><a href="{% url 'reference-detail' entity.pk %}" class="reference-link">{{ entity.name }}</a></li>
             {% endfor %}
         </ul>
     </div>
+    </div>
+    
+    {% include 'flatpages/footer.html' %}
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'flatpages/baseheader.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/maintenance_edit.css' %}">
+<div class="back-cont">
+    <button onclick="goBack()" class="back-button">Назад</button>
+    </div>
+    <h2>Вы уверены, что хотите удалить трансмиссию {{ model.name }}?</h2>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Удалить</button>
+    </form>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+    {% include 'flatpages/footer.html' %}
+{% endblock %}
