@@ -5,7 +5,7 @@
 {% block content %}
     <!-- Подключаем файл стилей -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/reclamation.js' %}"></script>
     <div class="style-content">
     <div class="comp">
         <h2 class="Text-comp">Проверьте ремонтное обслуживание техники <br/> "Силант"</h2>
@@ -68,7 +68,7 @@
                         {% endfor %}
                     </select>
                 </div>
-    
+            
                 <div class="search-item-max">
                     <label for="repair-procedure">Способ восстановления:</label>
                     <select name="repair-procedure" id="repair-procedure">
@@ -78,7 +78,7 @@
                         {% endfor %}
                     </select>
                 </div>
-    
+            
                 <div class="search-item-max">
                     <label for="service-department">Сервисная компания:</label>
                     <select name="service-department" id="service-department">
@@ -89,15 +89,15 @@
                     </select>
                 </div>
             </div>
-    
-                <div class="search-item-single">
-                    <label for="serial-number">Заводской номер:</label>
-                    <input type="text" id="serial-number" name="serial-number">
-                </div>
-                <div class="search-item-max search-item-button">
-                    <input type="submit" value="Поиск">
-                </div>
-            </form>
+                
+            <div class="search-item-single">
+                <label for="serial-number">Заводской номер:</label>
+                <input type="text" id="serial-number" name="serial-number">
+            </div>
+            <div class="search-item-max search-item-button">
+                <input type="submit" value="Поиск">
+            </div>
+        </form>
         </div>
         {% endif %}
     
@@ -131,7 +131,7 @@
             <tbody>
                 {% for reclamation in reclamations %}
                     <tr>
-                        <td><a href="{% url 'reclamation-detail' pk=reclamation.pk %}">Инфо</a></td>
+                        <td><a href="{% url 'reclamation-detail' pk=reclamation.pk %}"><img src= "{% static 'media/info.png' %}" alt="Info"></a></td>
                         <td><a href="{% url 'machine-detail' pk=reclamation.machine.pk %}">{{ reclamation.machine.serial_number }}</a></td>
                         <td>{{ reclamation.failure_date }}</td>
                         <td>{{ reclamation.operating_time }}</td>

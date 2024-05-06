@@ -11,7 +11,7 @@ body {
 }
 
 .narrow-input {
-    max-width: 80%; /* Уменьшаем ширину поля на 80% */
+    max-width: 50%; /* Уменьшаем ширину поля на 80% */
 }
 
 /* Стили для заголовка формы создания */
@@ -68,8 +68,8 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-left: 100%;
-    margin-top: 10%;
+    margin-left: 550px;
+    margin-top: 10px;
 }
 
 .create-form .submit-button:hover {

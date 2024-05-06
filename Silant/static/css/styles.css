@@ -53,6 +53,13 @@ table {
     border-collapse: collapse;
     overflow: hidden;
 }
+td img {
+    height: 40px;
+}
+
+td img:hover{
+    transform: scale(1.2); 
+}
 
 th, td {
     text-align: center;
@@ -69,6 +76,11 @@ th {
     background-color: #163E6C;
     color: white;
     text-align: center;
+}
+th:hover {
+    background-color: rgba(210, 10, 17, 0.5); /* Цвет подсветки при наведении */
+    color: white; /* Цвет текста при наведении */
+    cursor: pointer; /* Изменение курсора при наведении */
 }
 
 .comp{

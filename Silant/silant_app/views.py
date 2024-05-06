@@ -18,7 +18,7 @@ class MachineListView(ListView):
     template_name = 'index.html'
     context_object_name = 'machines'
     ordering = ['shipment_date'] 
-    paginate_by = 5 
+    paginate_by = 15
 
     def get_queryset(self):
         queryset = super().get_queryset().order_by('-shipment_date')
@@ -142,7 +142,7 @@ class MaintenanceListView(ListView):
     template_name = 'maintenance_list.html'
     context_object_name = 'maintenances'
     ordering = ['-maintenance_date']
-    paginate_by = 5
+    paginate_by = 15
 
     def get_queryset(self):
         queryset = super().get_queryset().order_by('-maintenance_date')
@@ -311,15 +311,27 @@ class ReclamationListView(ListView):
     template_name = 'reclamation_list.html'
     context_object_name = 'reclamations'
     ordering = ['-failure_date']
-    paginate_by = 5
+    paginate_by = 15
 
     def get_queryset(self):
         queryset = super().get_queryset().order_by('-failure_date')
         user = self.request.user
         serial_number = self.request.GET.get('serial-number')
+        failure_unit_id = self.request.GET.get('failure-unit')
+        repair_procedure_id = self.request.GET.get('repair-procedure')
+        service_department_id = self.request.GET.get('service-department')
 
         if serial_number:
             queryset = queryset.filter(machine__serial_number__icontains=serial_number)
+
+        if failure_unit_id:
+            queryset = queryset.filter(failure_unit=failure_unit_id)
+
+        if repair_procedure_id:
+            queryset = queryset.filter(repair_procedure=repair_procedure_id)
+
+        if service_department_id:
+            queryset = queryset.filter(service_department=service_department_id)
 
         if user.is_authenticated:
             if user.is_superuser or user.groups.filter(name='Manager').exists():
@@ -328,7 +340,7 @@ class ReclamationListView(ListView):
                 return queryset.filter(service_department=user.servicedepartment)
             elif user.groups.filter(name='Client').exists():
                 return queryset.filter(machine__client=user.client)
-        return queryset.none()  
+        return queryset.none()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -363,13 +375,14 @@ class ReclamationListView(ListView):
         context['failure_units'] = failure_units
         context['repair_procedures'] = repair_procedures
         context['service_departments'] = service_departments
+        print("Failure Units:", failure_units)
+        print("Repair Procedures:", repair_procedures)
+        print("Service Departments:", service_departments)
 
         if not context['reclamations']:
             context['search_message'] = "Данная рекламация не найдена"
 
-
-        return context  
-    
+        return context
 
     @method_decorator(user_passes_test(lambda u: u.groups.filter(name__in=['Manager', 'Service', 'Client']).exists() or u.is_superuser))
     def dispatch(self, *args, **kwargs):

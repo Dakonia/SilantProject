@@ -125,3 +125,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGIN_URL = 'error'
+
+ACCOUNT_ADAPTER = 'silant_app.adapter.CustomAccountAdapter'

@@ -29,8 +29,9 @@
 //     });
 // });
 
+
 function addTableEventHandlers() {
-    const table = document.getElementById("search-table");
+    const table = document.getElementById("reclamation-table");
     if (!table) return; // Проверяем, существует ли таблица на текущей странице
     const headers = table.getElementsByTagName("th");
     
@@ -48,7 +49,7 @@ function addTableEventHandlers() {
 function sortTable(event) {
     const header = event.target;
     const columnIndex = header.cellIndex;
-    const table = document.getElementById("search-table");
+    const table = document.getElementById("reclamation-table");
     const rows = Array.from(table.querySelectorAll("tbody tr"));
     
     // Определяем порядок сортировки: по возрастанию или убыванию
@@ -94,5 +95,3 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error("Element with id 'pagination' not found.");
     }
 });
-
-

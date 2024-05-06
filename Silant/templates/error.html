@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'flatpages/baseheader.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/error.css' %}">
     <title>Error</title>
-</head>
-<body>
+    <div class="error-cont">
+        <div class="error-tittle"
     <h1>Ошибка доступа</h1>
+    </div>
     <p>У вас недостаточно прав для просмотра этой страницы.</p>
-</body>
-</html>
+    </div>
+    <div class="refresh">
+        <a href="{% url 'machine-list' %}">Перейти на главную</a>
+    </div>
+{% endblock %}

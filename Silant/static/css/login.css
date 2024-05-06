@@ -1,43 +1,66 @@
-/* styles.css */
-
-/* Стили для контейнера формы */
+body{
+     background-color: #EBE6D6;
+     margin: 0;
+}
+@font-face {
+    font-family: Astra-bold;
+    src: url(../font/PT-Astra-Sans_Bold.ttf);
+}
 .login-container {
+    font-family: Astra-bold;
     display: flex;
-    justify-content: center; /* Центрирование по горизонтали */
-    align-items: center; /* Центрирование по вертикали */
-    height: 100vh; /* Занимает 100% высоты видимой области */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* Стили для формы входа */
+
 .login-form {
-    width: 300px; /* Ширина формы */
-    padding: 20px; /* Отступы вокруг формы */
-    border: 1px solid #ccc; /* Граница формы */
-    border-radius: 5px; /* Скругленные углы формы */
-    background-color: #f9f9f9; /* Цвет фона формы */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Тень формы */
+    width: 300px;
+
+    padding: 20px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 5px;
+
+    background-color: #f9f9f9;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
-/* Стили для кнопки входа */
+
 .login-form button {
-    width: 100%; /* Ширина кнопки равна ширине формы */
-    padding: 10px; /* Внутренние отступы кнопки */
-    margin-top: 10px; /* Внешний отступ сверху */
-    background-color: #007bff; /* Цвет фона кнопки */
-    color: #fff; /* Цвет текста кнопки */
-    border: none; /* Убираем границу кнопки */
-    border-radius: 5px; /* Скругляем углы кнопки */
-    cursor: pointer; /* Задаем курсор указателю при наведении */
+    width: 100%;
+
+    padding: 10px;
+
+    margin-top: 10px;
+
+    background-color: #007bff;
+
+    color: #fff;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+
 }
 
-/* Стили для кнопки входа при наведении */
 .login-form button:hover {
-    background-color: #0056b3; /* Изменяем цвет фона кнопки при наведении */
+    background-color: #0056b3;
+
 }
 
-/* Стили для сообщения об ошибке */
+
 .error-message {
-    color: #ff0000; /* Цвет текста красный */
-    font-size: 14px; /* Размер шрифта */
-    margin-top: 5px; /* Внешний отступ сверху */
+    color: #ff0000;
+
+    font-size: 14px;
+
+    margin-top: 5px;
+
 }

@@ -5,7 +5,7 @@
 {% block content %}
     <!-- Подключаем файл стилей -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/maintenance.js' %}"></script>
     <div class="style-content">
     <div class="comp">
         <h2 class="Text-comp">Проверьте технические обслуживание техники <br/> "Силант"</h2>
@@ -131,7 +131,7 @@
                 {% for maintenance in maintenances %}
                     <tr>
                         {% if user.is_authenticated %}
-                        <td><a href="{% url 'maintenance-detail' pk=maintenance.pk %}">Инфо</a></td>
+                        <td><a href="{% url 'maintenance-detail' pk=maintenance.pk %}"><img src= "{% static 'media/info.png' %}" alt="Info"></a></td>
                         <td><a href="{% url 'machine-detail' pk=maintenance.machine.pk %}">{{ maintenance.machine.serial_number }}</a></td>
                         <td><a href="{% url 'typeto' pk=maintenance.maintenance_type.pk %}"> {{ maintenance.maintenance_type }}</a></td>
                         <td>{{ maintenance.maintenance_date }}</td>

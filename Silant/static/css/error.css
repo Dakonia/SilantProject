@@ -1,0 +1,48 @@
+@font-face {
+    font-family: Astr-bold;
+    src: url(../font/PT-Astra-Sans_Bold.ttf);
+}
+@font-face {
+    font-family: Astra-ital;
+    src: url(../font/PT-Astra-Sans_Italic.ttf);
+}
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #EBE6D6;
+}
+
+.error-cont{
+    width: 30%;
+    font-family: Astr-bold;
+    background-color: #D20A11;
+    margin-top: 10%;
+    padding: 70px;
+    text-align: center;
+    margin-left: 30%;
+}
+.error-tittle{
+    font-size: 35px;
+}
+.error-cont p{
+    font-size: 20px;
+}
+.refresh{
+    text-align: center;
+    font-family: Astra-bold;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 30px;
+}
+.refresh a{
+    color: #163E6C;
+    text-decoration: none;
+    font-family: Astra-ital;
+}
+@media only screen and (max-width: 768px) {
+    .error-cont{
+        width: 60%;
+        margin-left: 0px;
+    }
+}    
