@@ -7,6 +7,7 @@
     font-family: Astra-bold;
     src: url(../font/PT-Astra-Sans_Bold.ttf);
 }
+
 body {
     width: 100%;
     margin: 0;
@@ -14,15 +15,16 @@ body {
     background-color: #EBE6D6;
 }
 
-.back_text{
+.back_text {
     font-family: Astra-bold;
     text-align: center;
 }
+
 .machine-details {
     max-width: 90%;
     margin-left: auto;
-    margin-right: auto; /* Чтобы контейнер был по центру */
-    margin-top: 20px; /* Отступ сверху */
+    margin-right: auto;
+    margin-top: 20px;
 }
 
 .details-table {
@@ -30,10 +32,10 @@ body {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 10px;
-    background-color: #163E6C; /* Цвет фона таблицы */
+    background-color: #163E6C;
     padding: 20px;
-    border-radius: 10px; /* Закругление углов */
-    border-collapse: collapse; /* Объединение границ */
+    border-radius: 10px;
+    border-collapse: collapse;
 }
 
 .row {
@@ -43,10 +45,9 @@ body {
 }
 
 .label, .value {
-    border: 1px solid #ddd; /* Граница для ячеек */
+    border: 1px solid #ddd;
     padding: 8px;
-    background-color: #ffffff; /* Задний фон для ячеек */
-
+    background-color: #ffffff;
 }
 
 .label {
@@ -59,8 +60,8 @@ body {
 }
 
 .machine-button {
-    text-align: center; /* Центрируем кнопки по горизонтали */
-    margin-top: 20px; /* Отступ сверху */
+    text-align: center;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -78,21 +79,22 @@ body {
 }
 
 .edit-button:hover, .delete-button:hover {
-    background-color: #45a049; /* Темно-зеленый при наведении */
+    background-color: #45a049;
 }
 
 .delete-button {
-    background-color: #B8060D; /* Красный цвет */
+    background-color: #B8060D;
 }
 
 .delete-button:hover {
-    background-color: #D20A11; /* Темно-красный при наведении */
+    background-color: #D20A11;
 }
 
 .delete-button:hover {
-    background-color: #D20A11; /* Темно-красный при наведении */
+    background-color: #D20A11;
 }
-.back-cont{
+
+.back-cont {
     margin-left: 20px;
     font-size: 20px;
 }
@@ -108,19 +110,22 @@ body {
     cursor: pointer;
     margin-right: 10px;
 }
+
 .back-button:hover {
     font-family: Astra-bold;
     background-color: rgb(150, 168, 215);
 }
+
 .style-button {
     margin-top: 5%;
 }
+
 .add-button {
-    text-align: center; /* Центрируем кнопку */
-    margin-bottom: 20px; /* Отступ снизу */
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.add-machine-button{
+.add-machine-button {
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: #45a049;
@@ -136,39 +141,54 @@ body {
     border-radius: 5px;
     font-family: Astra-bold;
     font-size: 16px;
-
 }
+.no_info{
+    text-align: center;
+    font-size: 40px;
+    font-family: Astra-bold;
+    color: white;
+    margin-left: 20%;
+}
+
 @media only screen and (max-width: 600px) {
     .details-table {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto;
     }
     
     .row {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto;
     }
 
     .label, .value {
-        width: auto; /* Убираем фиксированную ширину ячеек */
+        width: auto;
     }
 
     .machine-details {
-        margin-left: 0; /* Убираем отступ слева */
+        margin-left: 0;
     }
-    .back_text{
+
+    .back_text {
         margin-right: 0px;
     }
-    .back-cont{
+
+    .back-cont {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .machine-button {
         text-align: center;
         margin-left: 40px;
     }
-    .machine-button{
-        text-align: center;
-        margin-left: 40px;
-    }
-    .add-machine-button{
+
+    .add-machine-button {
         align-items: center;
         text-align: center;
         margin: 0px;
         width: 88%;
+    }
+    .no_info{
+        margin: 0;
+        font-size: 20px;
     }
 }

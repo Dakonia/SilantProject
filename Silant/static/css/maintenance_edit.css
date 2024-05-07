@@ -104,23 +104,23 @@ body {
 @media only screen and (max-width: 600px) {
 
     .edit-form .details-table {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto; 
     }
     
     .edit-form .row {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto; 
     }
 
     .edit-form .label, .edit-form .value {
-        width: auto; /* Убираем фиксированную ширину ячеек */
+        width: auto; 
     }
 
     .edit-form {
-        margin: 0; /* Устанавливаем нулевой отступ для формы */
+        margin: 0; 
     }
 
     .edit-form .back_text {
-        margin-left: 30px; /* Уменьшаем отступ заголовка на мобильных устройствах */
+        margin-left: 30px; 
     }
     .edit-form .save-button{
         text-align: center;

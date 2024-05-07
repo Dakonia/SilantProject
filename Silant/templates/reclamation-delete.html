@@ -1,12 +1,15 @@
-<!-- machine_delete.html -->
-
 {% extends 'flatpages/baseheader.html' %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/delete.css' %}">
+<div class="container">
+    <div class="form-container">
     <h2>Вы уверены, что хотите удалить Рекламацию для машины {{ reclamation.machine }}?</h2>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Удалить</button>
         <a href="{% url 'reclamation-detail' reclamation.pk %}">Отмена</a>
     </form>
+    </div>
+    </div>
     {% include 'flatpages/footer.html' %}
 {% endblock %}

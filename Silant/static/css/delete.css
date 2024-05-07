@@ -1,3 +1,11 @@
+@font-face {
+    font-family: Astra-bold;
+    src: url(../font/PT-Astra-Sans_Bold.ttf);
+}
+@font-face {
+    font-family: Astra-ital;
+    src: url(../font/PT-Astra-Sans_Italic.ttf);
+}
 body{
     width: 100%;
     margin: 0;
@@ -8,7 +16,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50vh;
 }
 
 .form-container {
@@ -20,6 +28,7 @@ body{
 }
 
 .form-container h2 {
+    font-family: Astra-bold;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -31,6 +40,7 @@ body{
 }
 
 .form-container form button {
+    font-family: Astra-ital;
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #dc3545;
@@ -54,3 +64,30 @@ body{
 .form-container form a:hover {
     text-decoration: underline;
 }
+.back-cont{
+    font-size: 20px;
+}
+
+.back-button {
+    margin-left: 20px;
+    margin-top: 20px;
+    font-family: Astra-bold;
+    background-color: #163E6C;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.back-button:hover {
+    font-family: Astra-bold;
+    background-color: rgb(150, 168, 215);
+}
+
+@media only screen and (max-width: 600px) {
+    .back-cont{
+        text-align: center;
+        font-size: 20px;
+    }
+}    

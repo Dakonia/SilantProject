@@ -28,10 +28,10 @@ body {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 10px;
-    background-color: #163E6C; /* Цвет фона таблицы */
+    background-color: #163E6C; 
     padding: 20px;
-    border-radius: 10px; /* Закругление углов */
-    border-collapse: collapse; /* Объединение границ */
+    border-radius: 10px; 
+    border-collapse: collapse; 
 }
 
 .row {
@@ -41,9 +41,9 @@ body {
 }
 
 .label, .value {
-    border: 1px solid #ddd; /* Граница для ячеек */
+    border: 1px solid #ddd; 
     padding: 8px;
-    background-color: #ffffff; /* Задний фон для ячеек */
+    background-color: #ffffff; 
 }
 
 .label {
@@ -56,8 +56,8 @@ body {
 }
 
 .machine-button {
-    text-align: center; /* Центрируем кнопки по горизонтали */
-    margin-top: 20px; /* Отступ сверху */
+    text-align: center; 
+    margin-top: 20px; 
     margin-bottom: 20px;
 }
 
@@ -75,19 +75,19 @@ body {
 }
 
 .edit-button:hover, .delete-button:hover {
-    background-color: #45a049; /* Темно-зеленый при наведении */
+    background-color: #45a049; 
 }
 
 .delete-button {
-    background-color: #B8060D; /* Красный цвет */
+    background-color: #B8060D; 
 }
 
 .delete-button:hover {
-    background-color: #D20A11; /* Темно-красный при наведении */
+    background-color: #D20A11; 
 }
 
 .delete-button:hover {
-    background-color: #D20A11; /* Темно-красный при наведении */
+    background-color: #D20A11; 
 }
 .back-cont{
     font-size: 20px;
@@ -112,19 +112,19 @@ body {
 
 @media only screen and (max-width: 600px) {
     .details-table {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto; 
     }
     
     .row {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto; 
     }
 
     .label, .value {
-        width: auto; /* Убираем фиксированную ширину ячеек */
+        width: auto; 
     }
 
     .machine-details {
-        margin-left: 0; /* Убираем отступ слева */
+        margin-left: 0; 
     }
     .back_text{
         margin-right: 0px;

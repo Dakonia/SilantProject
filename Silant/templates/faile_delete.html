@@ -1,16 +1,19 @@
 {% extends 'flatpages/baseheader.html' %}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/maintenance_edit.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/delete.css' %}">
 <div class="back-cont">
     <button onclick="goBack()" class="back-button">Назад</button>
     </div>
+    <div class="container">
+        <div class="form-container">
     <h2>Вы уверены, что хотите удалить узел отказа {{ model.name }}?</h2>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Удалить</button>
     </form>
-
+        </div>
+    </div>
     <script>
         function goBack() {
             window.history.back();

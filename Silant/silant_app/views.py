@@ -1120,6 +1120,11 @@ class ReclamationDetail(generics.RetrieveAPIView):
     queryset = Reclamation.objects.all()
     serializer_class = ReclamationSerializer
 
-
+class ReferenceEntityCreate(CreateView):
+    model= ReferenceEntity
+    template_name = 'reference/reference_create.html'
+    context_object_name = 'reference-create'
+    form_class = ReferenceCreateForm
+    success_url = reverse_lazy('reference-list')
 
 

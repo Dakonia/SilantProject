@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Astra-bold;
+    src: url(../font/PT-Astra-Sans_Bold.ttf);
+}
 body {
     width: 100%;
     margin: 0;
@@ -11,20 +15,18 @@ body {
 }
 
 .narrow-input {
-    max-width: 80%; /* Уменьшаем ширину поля на 80% */
+    max-width: 80%;
 }
 
-/* Стили для заголовка формы создания */
 .create-form-container h2 {
     font-family: Astra-bold;
     text-align: center;
 }
 
-/* Стили для самой формы создания */
 .create-form {
     width: 100%;
     display: grid;
-    grid-template-columns: auto auto; /* Определяем два столбца */
+    grid-template-columns: auto auto;
     grid-gap: 10px;
     background-color: #163E6C;
     padding: 20px;
@@ -32,14 +34,12 @@ body {
     border-collapse: collapse;
 }
 
-/* Стили для строк в форме создания */
 .create-form .row {
     display: grid;
     grid-template-columns: 150px auto;
     grid-gap: 10px;
 }
 
-/* Стили для меток в форме создания */
 .create-form .label {
     border: 1px solid #ddd;
     padding: 8px;
@@ -48,7 +48,6 @@ body {
     font-weight: bold;
 }
 
-/* Стили для значений в форме создания */
 .create-form .value {
     border: 1px solid #ddd;
     padding: 8px;
@@ -56,7 +55,6 @@ body {
     font-family: Astra-italic;
 }
 
-/* Стили для кнопки "Добавить" в форме создания */
 .create-form .submit-button {
     display: block;
     width: 100px;
@@ -74,7 +72,8 @@ body {
 .create-form .submit-button:hover {
     background-color: #45a049;
 }
-.back-cont{
+
+.back-cont {
     font-size: 20px;
 }
 
@@ -89,37 +88,42 @@ body {
     cursor: pointer;
     margin-right: 10px;
 }
+
 .back-button:hover {
     font-family: Astra-bold;
     background-color: rgb(150, 168, 215);
 }
 
 @media only screen and (max-width: 600px) {
-    .back-cont{
+    .back-cont {
         font-size: 20px;
         text-align: center;
         margin-left: 45px;
     }
 
     .create-form .row {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto;
     }
 
     .create-form {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto;
         margin-right: 0px;
     }
 
     .create-form .label, .create-form .value {
         width: 97%; 
     }    
-    
 
     .create-form-container {
-        margin: 0; /* Устанавливаем нулевой отступ для формы */
+        margin: 0;
     }
 
     .create-form-container h2 {
-        margin-left: 30px; /* Уменьшаем отступ заголовка на мобильных устройствах */
+        margin-left: 30px;
+    }
+    .create-form .submit-button {
+        text-align: center;
+        margin-left: 40%;
+        
     }
 }

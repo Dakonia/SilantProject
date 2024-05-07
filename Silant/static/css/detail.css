@@ -57,8 +57,8 @@ body {
 }
 
 .machine-button {
-    text-align: center; /* Центрируем кнопки по горизонтали */
-    margin-top: 20px; /* Отступ сверху */
+    text-align: center; 
+    margin-top: 20px; 
 }
 
 .edit-button, .delete-button {
@@ -75,19 +75,19 @@ body {
 }
 
 .edit-button:hover, .delete-button:hover {
-    background-color: #45a049; /* Темно-зеленый при наведении */
+    background-color: #45a049; 
 }
 
 .delete-button {
-    background-color: #B8060D; /* Красный цвет */
+    background-color: #B8060D; 
 }
 
 .delete-button:hover {
-    background-color: #D20A11; /* Темно-красный при наведении */
+    background-color: #D20A11; 
 }
 
 .delete-button:hover {
-    background-color: #D20A11; /* Темно-красный при наведении */
+    background-color: #D20A11; 
 }
 
 .back-cont{
@@ -112,19 +112,19 @@ body {
 
 @media only screen and (max-width: 600px) {
     .details-table {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto; 
     }
     
     .row {
-        grid-template-columns: auto; /* Изменяем количество столбцов на один */
+        grid-template-columns: auto; 
     }
 
     .label, .value {
-        width: auto; /* Убираем фиксированную ширину ячеек */
+        width: auto; 
     }
 
     .machinemodel-details {
-        margin-left: 0; /* Убираем отступ слева */
+        margin-left: 0; 
     }
 
     .back_text{

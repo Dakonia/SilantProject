@@ -25,21 +25,20 @@ body {
 }
 .table-container {
     margin-bottom: 40px;
-    overflow-x: auto; /* Добавляем горизонтальную прокрутку */
-    max-width: 100%; /* Максимальная ширина контейнера */
-    /* margin: 0 auto; */
-    padding: 20px; /* Добавляем отступы */
-    box-sizing: border-box; /* Учитываем отступы внутри контейнера */
+    overflow-x: auto; 
+    max-width: 100%; 
+    padding: 20px; 
+    box-sizing: border-box; 
     position: relative;
     border-radius: 15px;
 }
 .table-container::after {
-    content: ''; /* Добавляем пустой контент */
-    position: sticky; /* Устанавливаем позицию как абсолютную */
-    bottom: 0; /* Располагаем внизу контейнера */
-    left: 0; /* Располагаем слева контейнера */
-    width: 100%; /* Ширина 100% контейнера */
-    height: 10px; /* Высота полосы прокрутки */
+    content: ''; 
+    position: sticky; 
+    bottom: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 10px; 
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #D20A11);
     z-index: 1;
 }
@@ -78,9 +77,9 @@ th {
     text-align: center;
 }
 th:hover {
-    background-color: rgba(210, 10, 17, 0.5); /* Цвет подсветки при наведении */
-    color: white; /* Цвет текста при наведении */
-    cursor: pointer; /* Изменение курсора при наведении */
+    background-color: rgba(210, 10, 17, 0.5); 
+    color: white; 
+    cursor: pointer; 
 }
 
 .comp{
@@ -168,28 +167,28 @@ th:hover {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 40px; /* Adjust margin as needed */
+    margin-top: 40px; 
 }
 
 
 .navigation-links a {
     text-align: center;
     text-decoration: none;
-    color: black; /* Adjust color as needed */
+    color: black; 
 }
 
 .navigation-links a img {
-    width: 100px; /* Adjust width of images as needed */
-    height: auto; /* Maintain aspect ratio */
+    width: 100px; 
+    height: auto; 
 }
 
 .navigation-links a p {
     font-family: Astra-ital;
-    margin-top: 5px; /* Adjust margin as needed */
-    font-size: 24px; /* Adjust font size as needed */
+    margin-top: 5px; 
+    font-size: 24px; 
 }
 .navigation-links a:hover img {
-    transform: scale(1.2); /* Увеличиваем размер картинки при наведении на ссылку */
+    transform: scale(1.2); 
 }
 
 
@@ -219,11 +218,11 @@ th:hover {
 .search-container-max .search-item-max {
     display: flex;
     flex-direction: column;
-    margin-right: 20px; /* Расстояние между элементами */
-    margin-bottom: 20px; /* Отступ снизу */
+    margin-right: 20px; 
+    margin-bottom: 20px; 
 }
 
-/* Стили для текстовых заголовков */
+
 .search-container-max label {
     font-family: Astra-bold;
     font-size: 20px;
@@ -231,10 +230,10 @@ th:hover {
     margin-bottom: 5px;
 }
 
-/* Стили для выпадающих списков */
+
 .search-container-max select {
     margin-top: 20px;
-    width: 200px; /* Ширина списка */
+    width: 200px; 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -247,7 +246,7 @@ th:hover {
 /* Стили для поля ввода */
 .search-container-max input[type="text"] {
     font-family: Astra-ital;
-    width: 200px; /* Ширина поля */
+    width: 200px; 
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -256,11 +255,11 @@ th:hover {
 
 /* Стили для кнопки "Поиск" */
 .search-container-max input[type="submit"] {
-    margin: 50px auto 0 auto; /* Устанавливаем автоматическое значение для боковых отступов и верхнего отступа */
-    padding: 10px 15px; /* Уменьшаем внутренние отступы кнопки */
-    width: 150px; /* Устанавливаем ширину кнопки автоматически */
-    max-width: 150px; /* Максимальная ширина кнопки */
-    background-color:#163E6C; /* Зеленый цвет */
+    margin: 50px auto 0 auto; 
+    padding: 10px 15px; 
+    width: 150px; 
+    max-width: 150px; 
+    background-color:#163E6C; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -268,28 +267,27 @@ th:hover {
     font-size: 16px;
 }
 
-/* При наведении у кнопки также будет уменьшаться ширина */
 .search-container-max input[type="submit"]:hover {
-    background-color: #45a049; /* Темно-зеленый цвет при наведении */
-    padding: 10px 15px; /* Уменьшаем внутренние отступы кнопки */
+    background-color: #45a049; 
+    padding: 10px 15px; 
 }
 
 .search-container-max .search-item-single {
     text-align: center;
     align-items: center;
-    margin-top: 10px; /* Отступ сверху для отдельного элемента */
+    margin-top: 10px; 
 }
 .add-machine-container {
-    text-align: center; /* Выравниваем содержимое по центру */
+    text-align: center; 
     margin-top: 0px;
-    margin-bottom: 100px; /* Добавляем отступ сверху, если нужно */
+    margin-bottom: 100px; 
 }
 
 .add-machine-button {
     margin-top: 30px;
     display: inline-block;
     padding: 10px 20px;
-    background-color: #163E6C; /* Зеленый цвет */
+    background-color: #163E6C; 
     color: white;
     text-align: center;
     text-decoration: none;
@@ -297,15 +295,13 @@ th:hover {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-
-    /* Центрирование по горизонтали */
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .add-machine-button:hover {
-    background-color: #45a049; /* Темно-зеленый при наведении */
+    background-color: #45a049; 
 }
 
 .reference-container {
@@ -350,10 +346,10 @@ th:hover {
     color: #163E6C;
 }
 
-/* Добавляем стили для создания двух столбцов */
+
 .reference-list {
-    column-count: 2; /* Устанавливаем количество столбцов */
-    column-gap: 20px; /* Устанавливаем расстояние между столбцами */
+    column-count: 2; 
+    column-gap: 20px; 
 }
 
 .pagination {
@@ -397,48 +393,48 @@ th:hover {
         margin: 0px;
     }
     .navigation-links {
-        flex-direction: column; /* Изменяем направление расположения элементов на вертикальное */
-        align-items: center; /* Центрируем элементы по горизонтали */
-        margin-top: 20px; /* Уменьшаем отступ сверху, если нужно */
+        flex-direction: column; 
+        align-items: center; 
+        margin-top: 20px; 
     }
 
     .navigation-links a {
-        margin-bottom: 10px; /* Добавляем отступ между иконками */
+        margin-bottom: 10px; 
     }
 
     .navigation-links a p {
-        margin-top: 5px; /* Уменьшаем отступ сверху у текста */
-        font-size: 28px; /* Уменьшаем размер текста, если нужно */
+        margin-top: 5px; 
+        font-size: 28px; 
     }
 
     .navigation-links a img {
-        width: 100px; /* Уменьшаем размер иконок, если нужно */
+        width: 100px; 
     }
 
     .search-container {
-        margin-top: 0px; /* Уменьшаем отступ сверху */
-        text-align: center; /* Выравниваем содержимое по центру */
-        background-color: #D20A11; /* Задний красный фон */
-        padding-bottom: 70px; /* Добавляем внутренние отступы */
-        border-radius: 10px; /* Скругляем углы */
+        margin-top: 0px; 
+        text-align: center; 
+        background-color: #D20A11; 
+        padding-bottom: 70px; 
+        border-radius: 10px; 
     
     }
 
     .search-container label {
-        font-size: 16px; /* Уменьшаем размер текста метки */
-        margin-bottom: 5px; /* Уменьшаем отступ снизу метки */
-        display: block; /* Превращаем метку в блочный элемент */
+        font-size: 16px; 
+        margin-bottom: 5px; 
+        display: block; 
     }
 
     .search-container input[type="text"],
     .search-container input[type="submit"] {
-        width: 80%; /* Занимает 80% ширины родительского блока */
-        margin: 5px auto; /* Устанавливаем автоматические отступы по вертикали и по горизонтали */
-        display: block; /* Превращаем поля ввода и кнопку в блочные элементы */
+        width: 80%; 
+        margin: 5px auto; 
+        display: block; 
     }
 
     .search-container input[type="submit"] {
-        margin-top: 10px; /* Увеличиваем отступ сверху кнопки */
+        margin-top: 10px; 
     }
 
     .search-container-max{
@@ -451,16 +447,16 @@ th:hover {
         margin: 0px;
     }
 
-    /* Добавляем стили для подписей к таблице */
+   
     th, td {
-        white-space: nowrap; /* Предотвращаем перенос текста */
+        white-space: nowrap; 
     }
     .table-container{
         padding: 0px;
     }
     .reference-list {
-        column-count: 1; /* Изменяем количество столбцов на один для мобильных устройств */
-        column-gap: 0; /* Устанавливаем нулевой отступ между столбцами */
+        column-count: 1; 
+        column-gap: 0; 
     }
 
     .style-content{

@@ -3,14 +3,11 @@
     src: url(../font/PT-Astra-Sans_Regular.ttf);
 }
 
-/* #163E6C
-#D20A11
-#EBE6D6 */
 header {
     font-family: Astra;
-    background-color: #163E6C; /* Цвет фона шапки */
+    background-color: #163E6C;
     height: 100px;
-    color: #fff; /* Цвет текста */
+    color: #fff;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -29,37 +26,37 @@ header {
 
 .login-button a {
     margin-right: 20px;
-    color: #fff; /* Цвет текста кнопки */
-    text-decoration: none; /* Убираем подчеркивание */
-    border: 1px solid #fff; /* Граница кнопки */
-    padding: 5px 10px; /* Отступы внутри кнопки */
-    border-radius: 5px; /* Скругление углов */
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .login-button a:hover {
-    background-color: #fff; /* Изменяем цвет фона при наведении */
-    color: #333; /* Изменяем цвет текста при наведении */
+    background-color: #fff;
+    color: #333;
 }
 
 .logout-button a {
     margin-right: 20px;
-    color: #fff; /* Цвет текста кнопки */
-    text-decoration: none; /* Убираем подчеркивание */
-    border: 1px solid #fff; /* Граница кнопки */
-    padding: 5px 10px; /* Отступы внутри кнопки */
-    border-radius: 5px; /* Скругление углов */
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .logout-button a:hover {
-    background-color: #D20A11; /* Изменяем цвет фона при наведении */
-    color: #333; /* Изменяем цвет текста при наведении */
+    background-color: #D20A11;
+    color: #333;
 }
 
-.text-service{
+.text-service {
     font-size: 30px;
     text-align: center;
     margin-top: 60px;
-    position: absolute; /* Позиционируем абсолютно */
+    position: absolute;
     margin-bottom: 0px; 
     left: 50%; 
     transform: translateX(-50%); 
@@ -67,36 +64,34 @@ header {
 
 @media only screen and (max-width: 768px) {
     .logo img {
-        height: 70px; /* Уменьшаем высоту логотипа */
+        height: 70px;
     }
     .contact-info {
         font-size: 10px;
         margin-top: -40px;
     }
     .text-service {
-        font-size: 23px; /* Уменьшаем размер шрифта */
-        margin-top: 35px; /* Уменьшаем отступ сверху */
+        font-size: 23px;
+        margin-top: 35px;
     }
     .login-button,
     .logout-button {
-        margin-right: -15px; /* Уменьшаем отступы между кнопками */
+        margin-right: -15px;
     }
 }
 
-/* Для мобильных устройств шириной до 480px */
 @media only screen and (max-width: 480px) {
     .logo img {
         margin-top: 20px;
-        height: 50px; /* Еще больше уменьшаем высоту логотипа */
+        height: 50px;
     }
     .text-service {
-        font-size: 20px; /* Еще больше уменьшаем размер шрифта */
-        margin-top: 35px; /* Еще больше уменьшаем отступ сверху */
+        font-size: 20px;
+        margin-top: 35px;
     }
     .login-button,
     .logout-button {
         margin-top: 20px;
-        margin-right: -20px; /* Еще больше уменьшаем отступы между кнопками */
+        margin-right: -20px;
     }
 }
-

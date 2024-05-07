@@ -259,3 +259,9 @@ class FailureUnitForm(ModelForm):
         if commit:
             instance.save()
         return instance      
+    
+
+class ReferenceCreateForm(ModelForm):
+    class Meta:
+        model = ReferenceEntity
+        fields = '__all__'    

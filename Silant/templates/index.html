@@ -1,9 +1,6 @@
-<!-- index.html -->
-
 {% extends 'flatpages/baseheader.html' %}
 {% load static %}
 {% block content %}
-    <!-- Подключаем файл стилей -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="{% static 'js/index.js' %}"></script>
     <div class="style-content">
@@ -41,7 +38,7 @@
             <img src="{% static 'images/rec.jpg' %}" alt="Рекламации">
             <p>Рекламации</p>
         </a>
-        {% if 'Manager' in user.groups.all|join:", " %}
+        {% if 'Manager' in user.groups.all|join:", " or user.is_superuser %}
         <a href="{% url 'reference-list' %}">
             <img src="{% static 'images/sprav.jpg' %}" alt="Справочник">
             <p>Справочник</p>
@@ -51,7 +48,7 @@
     {% endif %}
     <div class="add-machine-container">
         {% if user.is_authenticated %}
-            {% if 'Manager' in user.groups.all|join:", " %}
+            {% if 'Manager' in user.groups.all|join:", " or user.is_superuser %}
                 <a href="{% url 'machine-create' %}" class="add-machine-button">Добавить Машину</a>
             {% endif %}
         {% endif %}

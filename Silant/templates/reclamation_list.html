@@ -40,7 +40,7 @@
             <img src="{% static 'images/rec.jpg' %}" alt="Рекламации">
             <p>Рекламации</p>
         </a>
-        {% if 'Manager' in user.groups.all|join:", " %}
+        {% if 'Manager' in user.groups.all|join:", " or user.is_superuser %}
         <a href="{% url 'reference-list' %}">
             <img src="{% static 'images/sprav.jpg' %}" alt="Справочник">
             <p>Справочник</p>
@@ -50,7 +50,7 @@
     {% endif %}
     <div class="add-machine-container">
         {% if user.is_authenticated %}
-            {% if 'Manager' in user.groups.all|join:", " or 'Service' in user.groups.all|join:", " %}
+            {% if 'Manager' in user.groups.all|join:", " or 'Service' in user.groups.all|join:", " or user.is_superuser %}
                 <a href="{% url 'reclamation-create' %}" class="add-machine-button">Добавить Рекламацию</a>
             {% endif %}
         {% endif %}

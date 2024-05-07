@@ -32,15 +32,15 @@
 
 function addTableEventHandlers() {
     const table = document.getElementById("maintenance-table");
-    if (!table) return; // Проверяем, существует ли таблица на текущей странице
+    if (!table) return; 
     const headers = table.getElementsByTagName("th");
     
-    // Удаляем существующие обработчики событий, если они есть
+   
     for (let i = 0; i < headers.length; i++) {
         headers[i].removeEventListener("click", sortTable);
     }
 
-    // Добавляем обработчик клика на заголовки столбцов
+    
     for (let i = 0; i < headers.length; i++) {
         headers[i].addEventListener("click", sortTable);
     }
@@ -52,7 +52,7 @@ function sortTable(event) {
     const table = document.getElementById("maintenance-table");
     const rows = Array.from(table.querySelectorAll("tbody tr"));
     
-    // Определяем порядок сортировки: по возрастанию или убыванию
+    
     let sortOrder = 1;
     if (header.classList.contains("ascending")) {
         header.classList.remove("ascending");
@@ -63,7 +63,7 @@ function sortTable(event) {
         header.classList.add("ascending");
     }
     
-    // Сортируем строки таблицы на основе данных в выбранном столбце
+    
     rows.sort((a, b) => {
         const valueA = a.cells[columnIndex].textContent;
         const valueB = b.cells[columnIndex].textContent;
@@ -74,7 +74,7 @@ function sortTable(event) {
         }
     });
     
-    // Обновляем порядок строк в таблице
+
     rows.forEach((row) => {
         table.tBodies[0].appendChild(row);
     });

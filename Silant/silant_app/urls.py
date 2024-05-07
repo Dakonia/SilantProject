@@ -68,5 +68,6 @@ urlpatterns = [
     path('api/maintenances/<int:pk>/', MaintenanceDetail.as_view(), name='maintenance-detail-api'),
     path('api/reclamations/', ReclamationList.as_view(), name='reclamation-list-api'),
     path('api/reclamations/<int:pk>/', ReclamationDetail.as_view(), name='reclamation-detail-api'),
+    path('reference/create/', ReferenceEntityCreate.as_view(), name='reference-create'),
 
 ]
